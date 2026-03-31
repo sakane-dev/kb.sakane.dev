@@ -1,0 +1,623 @@
+/* ==========================================================================
+   KB Landing — The Archive
+   Material Design 3 inspired, dark-first, Bento Grid layout
+   Matches: Collection Explorer & Paper Viewer design system
+   ========================================================================== */
+
+/* ---------- MD3 Design Tokens ---------- */
+
+.kb-landing {
+  --md-primary: #c2c1ff;
+  --md-on-primary: #1800a7;
+  --md-primary-container: #5e5ce6;
+  --md-on-primary-container: #f4f1ff;
+  --md-secondary: #b9c8de;
+  --md-tertiary: #ddb7ff;
+  --md-tertiary-container: #9541e4;
+  --md-error: #ffb4ab;
+  --md-background: #121315;
+  --md-surface: #121315;
+  --md-surface-dim: #121315;
+  --md-surface-container-lowest: #0d0e10;
+  --md-surface-container-low: #1b1c1e;
+  --md-surface-container: #1f2022;
+  --md-surface-container-high: #292a2c;
+  --md-surface-container-highest: #343537;
+  --md-on-surface: #e3e2e5;
+  --md-on-surface-variant: #c7c4d7;
+  --md-outline: #918fa0;
+  --md-outline-variant: #464554;
+  --md-surface-tint: #c2c1ff;
+
+  min-height: 100vh;
+  background: var(--md-background);
+  color: var(--md-on-surface);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Top Bar ---------- */
+
+.kb-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(18, 19, 21, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(70, 69, 84, 0.15);
+}
+
+.kb-topbar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kb-topbar__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.kb-topbar__logo {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--md-primary);
+  letter-spacing: -0.02em;
+}
+
+.kb-topbar__label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--md-outline);
+}
+
+.kb-topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.kb-topbar__link {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(145, 143, 160, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.kb-topbar__link:hover {
+  color: var(--md-on-surface);
+}
+
+/* ---------- Main ---------- */
+
+.kb-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 4rem;
+}
+
+/* ---------- Hero ---------- */
+
+.kb-hero {
+  padding: 2rem 0 1.5rem;
+}
+
+.kb-hero__title {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 3.25rem;
+  font-weight: 300;
+  color: var(--md-on-surface);
+  margin: 0 0 0.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.kb-hero__sub {
+  font-size: 1.0625rem;
+  color: var(--md-on-surface-variant);
+  max-width: 680px;
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  font-family: 'Newsreader', 'Georgia', serif;
+}
+
+.kb-hero__sub strong {
+  color: var(--md-on-surface);
+  font-weight: 500;
+}
+
+/* ---------- Filter Chips ---------- */
+
+.kb-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kb-chip {
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid rgba(70, 69, 84, 0.2);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.kb-chip:hover {
+  color: var(--md-on-surface);
+  border-color: rgba(70, 69, 84, 0.4);
+}
+
+.kb-chip--active {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  border-color: var(--md-primary);
+}
+
+.kb-chip--active:hover {
+  opacity: 0.9;
+}
+
+/* ---------- Bento Grid ---------- */
+
+.kb-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+/* Featured card: 8 columns */
+.kb-card--featured {
+  grid-column: span 8;
+  min-height: 400px;
+}
+
+/* Grid cards: 4 columns each */
+.kb-card--grid {
+  grid-column: span 4;
+  min-height: 300px;
+}
+
+@media (max-width: 960px) {
+  .kb-bento {
+    grid-template-columns: 1fr;
+  }
+  .kb-card--featured,
+  .kb-card--grid {
+    grid-column: span 1;
+  }
+  .kb-card--featured {
+    min-height: 320px;
+  }
+  .kb-card--grid {
+    min-height: 240px;
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+  .kb-card--featured {
+    grid-column: span 12;
+  }
+  .kb-card--grid {
+    grid-column: span 6;
+  }
+}
+
+/* ---------- Card Base ---------- */
+
+.kb-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--md-surface-container-low);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.kb-card:hover {
+  border-color: rgba(70, 69, 84, 0.15);
+}
+
+/* Featured card background */
+.kb-card__bg-featured {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(94, 92, 230, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(149, 65, 228, 0.15) 0%, transparent 50%),
+    var(--md-surface-container-low);
+  transition: transform 0.7s ease;
+}
+
+.kb-card--featured:hover .kb-card__bg-featured {
+  transform: scale(1.05);
+}
+
+/* Grid card with abstract bg */
+.kb-card__bg-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(94, 92, 230, 0.2) 0%, transparent 70%),
+    var(--md-surface-container-low);
+  opacity: 0.6;
+  transition: transform 0.7s ease;
+}
+
+.kb-card--with-bg:hover .kb-card__bg-grid {
+  transform: scale(1.05);
+}
+
+.kb-card__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--md-background), transparent 50%);
+}
+
+/* Solid background variant */
+.kb-card--solid {
+  background: linear-gradient(135deg, var(--md-surface-container-low), var(--md-surface-container-high));
+}
+
+/* ---------- Card Content ---------- */
+
+.kb-card__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.kb-card__content--featured {
+  flex: 1;
+  justify-content: flex-end;
+  padding: 2.5rem;
+}
+
+.kb-card__content--grid {
+  flex: 1;
+  padding: 2rem;
+}
+
+.kb-card__content--bottom {
+  justify-content: flex-end;
+}
+
+.kb-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.kb-badge--primary {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(194, 193, 255, 0.2);
+  color: var(--md-primary);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid rgba(194, 193, 255, 0.3);
+}
+
+.kb-card__title--featured {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--md-on-surface);
+  letter-spacing: -0.01em;
+}
+
+.kb-card__title--grid {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 auto;
+  color: var(--md-on-surface);
+  /* Clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.kb-card__tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.kb-tag-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.kb-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kb-card__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.kb-meta {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--md-outline);
+}
+
+.kb-meta--accent {
+  color: var(--md-primary);
+}
+
+.kb-meta-dot {
+  color: var(--md-outline-variant);
+  font-size: 0.625rem;
+}
+
+.kb-card__icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--md-surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--md-primary);
+  border: 1px solid rgba(70, 69, 84, 0.15);
+}
+
+.kb-arrow-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 300;
+  transition: box-shadow 0.3s ease;
+}
+
+.kb-card--featured:hover .kb-arrow-btn {
+  box-shadow: 0 0 24px rgba(194, 193, 255, 0.35);
+}
+
+/* ---------- Activity Section ---------- */
+
+.kb-activity {
+  margin-top: 4rem;
+}
+
+.kb-activity__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.kb-activity__title {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--md-on-surface);
+}
+
+.kb-activity__sub {
+  font-size: 0.8125rem;
+  color: var(--md-outline);
+  margin: 4px 0 0;
+}
+
+.kb-activity__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Activity Row */
+.kb-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: var(--md-surface-container-low);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.kb-row:hover {
+  background: var(--md-surface-container);
+  border-color: rgba(70, 69, 84, 0.15);
+}
+
+.kb-row__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--md-surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(194, 193, 255, 0.7);
+}
+
+.kb-row__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.kb-row__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--md-on-surface);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kb-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 0.6875rem;
+  color: var(--md-outline);
+}
+
+.kb-row__end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.kb-status {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.kb-status--pub {
+  background: rgba(194, 193, 255, 0.15);
+  color: var(--md-primary);
+}
+
+.kb-status--draft {
+  background: var(--md-surface-container-highest);
+  color: var(--md-on-surface-variant);
+}
+
+.kb-row__chevron {
+  flex-shrink: 0;
+  color: var(--md-outline);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.kb-row:hover .kb-row__chevron {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .kb-row__end {
+    display: none;
+  }
+}
+
+/* ---------- Empty State ---------- */
+
+.kb-empty {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--md-outline);
+  font-size: 0.875rem;
+}
+
+/* ---------- Footer ---------- */
+
+.kb-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid rgba(70, 69, 84, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--md-outline);
+}
+
+.kb-footer__dot {
+  opacity: 0.4;
+}
+
+/* ---------- Card Entry Animation ---------- */
+
+@keyframes kbFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kb-card {
+  animation: kbFadeUp 0.5s ease both;
+}
+
+.kb-card--featured { animation-delay: 0ms; }
+.kb-card--grid:nth-child(2) { animation-delay: 80ms; }
+.kb-card--grid:nth-child(3) { animation-delay: 160ms; }
+.kb-card--grid:nth-child(4) { animation-delay: 240ms; }
+.kb-card--grid:nth-child(5) { animation-delay: 320ms; }
+.kb-card--grid:nth-child(6) { animation-delay: 400ms; }
+
+.kb-row {
+  animation: kbFadeUp 0.4s ease both;
+}
+
+/* ---------- Glass Panel (shared with paper viewer) ---------- */
+
+.kb-glass {
+  backdrop-filter: blur(12px);
+  background: rgba(41, 42, 44, 0.6);
+  border: 1px solid rgba(145, 143, 160, 0.15);
+}

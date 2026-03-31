@@ -12,8 +12,6 @@ import 'styles/global.css'
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
-// KB Landing Page styles (MD3 design system)
-import 'styles/kb-landing.css'
 
 import type { AppProps } from 'next/app'
 import * as Fathom from 'fathom-client'

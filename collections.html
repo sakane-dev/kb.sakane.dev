@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Archive | Collection Explorer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#f0dbff",
+              "primary-fixed-dim": "#c2c1ff",
+              "on-secondary": "#233143",
+              "secondary-fixed": "#d4e4fa",
+              "on-tertiary-container": "#fbefff",
+              "on-primary-fixed-variant": "#332dbc",
+              "surface-container-low": "#1b1c1e",
+              "outline-variant": "#464554",
+              "on-tertiary-fixed": "#2c0051",
+              "on-error": "#690005",
+              "on-surface-variant": "#c7c4d7",
+              "inverse-surface": "#e3e2e5",
+              "error": "#ffb4ab",
+              "surface-container": "#1f2022",
+              "surface-dim": "#121315",
+              "secondary": "#b9c8de",
+              "tertiary": "#ddb7ff",
+              "surface-container-lowest": "#0d0e10",
+              "on-primary-fixed": "#0c006b",
+              "on-secondary-fixed": "#0d1c2d",
+              "on-secondary-container": "#a7b6cc",
+              "tertiary-fixed-dim": "#ddb7ff",
+              "on-error-container": "#ffdad6",
+              "background": "#121315",
+              "primary-container": "#5e5ce6",
+              "on-surface": "#e3e2e5",
+              "outline": "#918fa0",
+              "on-primary": "#1800a7",
+              "secondary-container": "#39485a",
+              "surface-tint": "#c2c1ff",
+              "error-container": "#93000a",
+              "surface-container-highest": "#343537",
+              "surface-container-high": "#292a2c",
+              "surface": "#121315",
+              "on-tertiary": "#490080",
+              "inverse-on-surface": "#303033",
+              "on-tertiary-fixed-variant": "#6900b3",
+              "secondary-fixed-dim": "#b9c8de",
+              "surface-bright": "#38393b",
+              "on-primary-container": "#f4f1ff",
+              "surface-variant": "#343537",
+              "primary": "#c2c1ff",
+              "on-background": "#e3e2e5",
+              "tertiary-container": "#9541e4",
+              "inverse-primary": "#4d4ad5",
+              "primary-fixed": "#e2dfff",
+              "on-secondary-fixed-variant": "#39485a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Newsreader"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(16px);
+        background: rgba(41, 42, 44, 0.6);
+        border: 1px solid rgba(145, 143, 160, 0.15);
+      }
+      .newsreader-title { font-family: 'Newsreader', serif; }
+      .inter-label { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-label selection:bg-primary/30">
+<!-- SideNavBar (from JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-transparent bg-[#1b1c1e] dark:bg-[#1b1c1e] flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-bold tracking-tight text-[#c2c1ff] dark:text-[#c2c1ff]">The Archive</h1>
+<p class="text-[10px] inter-label uppercase tracking-widest text-outline mt-1">Curated Intelligence</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-[#292a2c] rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="library_books">library_books</span>
+<span class="text-sm font-medium">Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-[#292a2c] rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="text-sm font-medium">Archive</span>
+</a>
+<!-- Active State: Collections -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#c2c1ff] bg-[#292a2c] rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="folder_special" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+<span class="text-sm">Collections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-[#292a2c] rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="analytics">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 transition-colors hover:bg-[#292a2c] rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 py-4 bg-surface-container-lowest rounded-xl flex items-center gap-3">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQrnPt5ntY7uiDm3ZbSsZI8jZ7EOZnTDh5dPK6ZJz3R4NoAW5KAlBzn8B9yQbSY76pcuMUr_jwL3zbi5VYKYQ2SlHN1REYg40zbAahKleIOAySfoIL4duo9owNYjkNw8_dOz3YrbeG2RUS1mAvZEdHLYdkm5hX3sQJ9H1LKGq2r7FF548r7i8sEjBaJ_KLczNcY22Ixu9VeRmuxXXIVLZBXchsr7inwuCr4sirbzfimChRJQrB8Qm5gCW0AeF9fZ2QpdZlENb7Nw"/>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold truncate">Researcher Avatar</p>
+<p class="text-[10px] text-outline truncate">Pro Plan</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#121315]/80 dark:bg-[#121315]/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high/60 border border-transparent focus:border-primary/50 focus:ring-0 rounded-lg py-2 pl-10 pr-4 text-sm transition-all placeholder:text-outline/50 inter-label" placeholder="Search the archive..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-8 ml-8">
+<a class="text-[#c2c1ff] border-b-2 border-[#c2c1ff] pb-1 text-xs uppercase tracking-wider font-semibold" href="#">Collections</a>
+<a class="text-slate-400 font-medium hover:text-slate-200 text-xs uppercase tracking-wider" href="#">Recent</a>
+<a class="text-slate-400 font-medium hover:text-slate-200 text-xs uppercase tracking-wider" href="#">Bookmarks</a>
+</nav>
+<div class="flex items-center gap-4 ml-8">
+<button class="p-2 hover:bg-[#343537]/50 rounded-md transition-all text-outline hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-[#343537]/50 rounded-md transition-all text-outline hover:text-primary">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-10 max-w-7xl">
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="flex flex-col gap-2">
+<h2 class="text-5xl newsreader-title font-light text-on-surface leading-tight">Collections</h2>
+<p class="text-outline-variant max-w-2xl text-lg font-body leading-relaxed">
+                    A curated mapping of technical intelligence, architectural frameworks, and strategic insights. These clusters represent the foundational pillars of our collective research.
+                </p>
+</div>
+<!-- Filter Chips -->
+<div class="flex flex-wrap gap-2 mt-8">
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-primary text-on-primary">All Intelligence</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors border border-outline-variant/10">Structural Intelligence</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors border border-outline-variant/10">Career Design</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors border border-outline-variant/10">AI Architecture</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors border border-outline-variant/10">Agentic Systems</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors border border-outline-variant/10">Engineering Ethics</button>
+</div>
+</section>
+<!-- Bento Grid Collections -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16">
+<!-- Large Featured Card -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low min-h-[400px]">
+<div class="absolute inset-0 z-0">
+<img alt="Abstract digital network" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="Abstract fluid background with glowing purple and blue neural network patterns, soft neon gradients, dark professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiRSXJdEka23F_8XWr-p_sdBVh7ash9HkS9isAEIEmFUlw4rh48e1IUVvU32doNIenVilpyWUXRCDQKS1RTmIhSu01rHeU6cYgru99SSQhaqVkgUNYgjCcY8lOuTeXwnQKci86KTl1qrVMu1aPhROOO7Qu1ijqTxJeF41WSbMQ95PNvQ6gp2U1bd8jg3QMWO4zD4PP19CktzzvQguH4-7ulTSMfTX1yy0fj1UBDsKQZWs5IiMo7oF3XRQ3RJd_4Y--tbgtzOtzMNM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end p-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/30">Primary Thesis</span>
+<span class="text-outline text-xs inter-label">24 Documents</span>
+</div>
+<h3 class="text-4xl newsreader-title mb-4">Structural Intelligence</h3>
+<p class="text-on-surface-variant/80 font-body text-lg max-w-lg mb-6 leading-relaxed">
+                        Examining the foundational patterns of robust software architectures and the philosophical underpinnings of complex systems design.
+                    </p>
+<div class="flex items-center justify-between">
+<span class="text-[11px] inter-label uppercase tracking-widest text-outline">Last activity: 2 hours ago</span>
+<button class="p-3 rounded-full bg-primary text-on-primary hover:shadow-[0_0_20px_rgba(194,193,255,0.4)] transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Small Card 1 -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low min-h-[400px]">
+<div class="absolute inset-0 z-0">
+<img alt="Cyber security concept" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-700" data-alt="Close-up of futuristic hardware with glowing blue circuit paths, cinematic lighting, sharp focus on technical details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1KD0ozs1QteNCAx3Ltt9Pvj6inN0heHtorUb9ToPcpuUVqmdOwRbiTCFiJPDNEfGof2FaLECh2GflIpPU4V1Wy5ZX3yrbXllFEtKLQ4vfuUCsqi1CfMeoFdLj77wIju9nqL1krdoAEJtCl0ZRvl-wBPnnHPFXZqwggDHQrL7bnjfFQkzSp24LI6z2Z1kCVQ_VGovHRfyW72EGRPpwJz-vNlC4syFpYE_u103QzQLQGSknvwsMPVl0e0pL51RZUrSPM9-_y3FuaQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end p-8">
+<div class="mb-4">
+<span class="text-outline text-xs inter-label">12 Documents</span>
+</div>
+<h3 class="text-2xl newsreader-title mb-2">Agentic Frameworks</h3>
+<p class="text-on-surface-variant/80 font-body text-sm mb-6 line-clamp-2">
+                        Research into autonomous software entities, decision engines, and multi-agent coordination.
+                    </p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] inter-label uppercase tracking-widest text-outline">Updated Oct 24</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Small Card 2 -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low h-[320px]">
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-[#1b1c1e] to-[#292a2c]"></div>
+<div class="relative z-10 h-full flex flex-col p-8">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center mb-6 text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined text-3xl" data-icon="work_outline">work_outline</span>
+</div>
+<h3 class="text-2xl newsreader-title mb-2">Career Design</h3>
+<p class="text-on-surface-variant/80 font-body text-sm mb-auto">
+                        Strategic frameworks for engineering career progression, leadership, and high-output mastery.
+                    </p>
+<div class="flex items-center gap-2 mt-4">
+<span class="text-outline text-xs inter-label">8 reports</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-outline text-xs inter-label">98% relevance</span>
+</div>
+</div>
+</div>
+<!-- Small Card 3 -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low h-[320px]">
+<div class="absolute inset-0 z-0">
+<img alt="AI concept art" class="w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-700" data-alt="Stylized portrait of a human profile composed of geometric glass shards and flowing light particles, deep indigo background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEkQVL7VU6NydQKg3mU3YBtTyi6lITTO6-j88Lmw49O2AjAFUpG05UDKxeHgNX0MKvDtpIoE6ZZMiTpTmPHxPJ5lClIEP8tB2Kr2mTG-_H5lRP0ul5h9FUZKDpr-VogYX9CduS0llufB2GPQqG06PzagwVNanviGUC08fUHy_EMsbPQnsI1LmEif-remzM_xUd-7COWxlx9YgSFYyWqle3lKu88sp6pZ80t1c_MulG2oKEEvPefe-dBSnfCbpyudgFa7j3_56Xt5s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end p-8">
+<h3 class="text-2xl newsreader-title mb-2">The AI Thesis</h3>
+<div class="flex items-center gap-4 text-outline text-xs inter-label uppercase tracking-widest">
+<span>15 Docs</span>
+<span>•</span>
+<span>Updated Weekly</span>
+</div>
+</div>
+</div>
+<!-- Medium Card -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low h-[320px] flex items-center justify-center border border-dashed border-outline-variant/30 hover:border-primary/50 transition-colors cursor-pointer">
+<div class="text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center mx-auto mb-4 text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</div>
+<p class="text-sm font-semibold tracking-wide inter-label uppercase text-outline">Propose New Topic</p>
+</div>
+</div>
+</section>
+<!-- Recent Activity Section -->
+<section class="mt-20">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-2xl newsreader-title">Trending Intelligence</h3>
+<p class="text-outline text-sm inter-label">The most accessed reports across the collective in the last 72 hours.</p>
+</div>
+<button class="text-primary text-xs font-bold uppercase tracking-widest hover:underline">View All activity</button>
+</div>
+<div class="space-y-4">
+<!-- Activity Row 1 -->
+<div class="group flex items-center gap-6 p-5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all border border-transparent hover:border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary/80" data-icon="article">article</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate">Cognitive Offloading in Distributed Engineering Teams</h4>
+<div class="flex items-center gap-3 mt-1 text-xs text-outline">
+<span class="inter-label">Research Note</span>
+<span>•</span>
+<span class="inter-label">Structural Intelligence</span>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end shrink-0">
+<span class="text-[10px] font-bold text-primary-container bg-primary/10 px-2 py-0.5 rounded">HIGH DENSITY</span>
+<span class="text-xs text-outline mt-1 inter-label">Read time: 14m</span>
+</div>
+<div class="flex items-center gap-2 shrink-0 px-4">
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="bookmark">bookmark</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<!-- Activity Row 2 -->
+<div class="group flex items-center gap-6 p-5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all border border-transparent hover:border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="architecture">architecture</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate">The Death of the Monolith: Post-Microservices Paradox</h4>
+<div class="flex items-center gap-3 mt-1 text-xs text-outline">
+<span class="inter-label">Architectural Audit</span>
+<span>•</span>
+<span class="inter-label">Engineering Ethics</span>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end shrink-0">
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded">ARCHIVED</span>
+<span class="text-xs text-outline mt-1 inter-label">Read time: 8m</span>
+</div>
+<div class="flex items-center gap-2 shrink-0 px-4">
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="bookmark">bookmark</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<!-- Activity Row 3 -->
+<div class="group flex items-center gap-6 p-5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all border border-transparent hover:border-outline-variant/10">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error" data-icon="data_exploration">data_exploration</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-semibold text-on-surface truncate">LLM Hallucinations as a Feature: A New Probabilistic Paradigm</h4>
+<div class="flex items-center gap-3 mt-1 text-xs text-outline">
+<span class="inter-label">Working Paper</span>
+<span>•</span>
+<span class="inter-label">AI Architecture</span>
+</div>
+</div>
+<div class="hidden md:flex flex-col items-end shrink-0">
+<span class="text-[10px] font-bold text-primary bg-primary/20 px-2 py-0.5 rounded">TRENDING</span>
+<span class="text-xs text-outline mt-1 inter-label">Read time: 22m</span>
+</div>
+<div class="flex items-center gap-2 shrink-0 px-4">
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="bookmark">bookmark</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Suppressed based on rules, but included here for "Add Collection" if applicable on Dashboard) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-on-primary-container rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform active:scale-95 group z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="edit">edit</span>
+<span class="absolute right-full mr-4 px-3 py-1.5 bg-surface-container-highest text-on-surface text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl border border-outline-variant/20">New Archive Entry</span>
+</button>
+<!-- Subtle Grain Overlay -->
+<div class="fixed inset-0 pointer-events-none z-[100] opacity-[0.03]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZitGTi3yQI-CtfDlQLUHcD4uPmqyGEy2hIaP8C0JeTar8DnUMaU5DI8MxHIR7PSM-hmdCKCWHztoWMbbXnULJ9XmIuRzStVpxNdBogTbs5hmNLdL8sybIAOy95GOGiQXYH5z0eAiFq7Et7jp2VHrgOb1VzrhpiE5dIjiPzaVFkTsRjB3xswntDzc-B1tHGI1gGtsmXbQBIklwy2G_tA8pg7z66Sh91XYKBOZgkx9Riyi0KGWJ7ZpCvI6snNUPaAGRq02gsC_QemU');"></div>
+</body></html>

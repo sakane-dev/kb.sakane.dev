@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .serif-drop-cap::first-letter {
+      float: left;
+      font-family: 'Newsreader', serif;
+      font-size: 4.5rem;
+      line-height: 1;
+      padding-top: 0.5rem;
+      padding-right: 0.75rem;
+      color: #c2c1ff;
+    }
+    .glass-panel {
+      background: rgba(41, 42, 44, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(145, 143, 160, 0.15);
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #121315; }
+    ::-webkit-scrollbar-thumb { background: #343537; border-radius: 10px; }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary": "#ddb7ff",
+            "on-error-container": "#ffdad6",
+            "secondary-container": "#39485a",
+            "on-tertiary-fixed-variant": "#6900b3",
+            "surface-container-highest": "#343537",
+            "on-tertiary": "#490080",
+            "on-primary-container": "#f4f1ff",
+            "inverse-surface": "#e3e2e5",
+            "error-container": "#93000a",
+            "surface-container-lowest": "#0d0e10",
+            "error": "#ffb4ab",
+            "surface-container-high": "#292a2c",
+            "surface-container": "#1f2022",
+            "outline": "#918fa0",
+            "secondary": "#b9c8de",
+            "on-tertiary-fixed": "#2c0051",
+            "on-secondary-container": "#a7b6cc",
+            "tertiary-fixed": "#f0dbff",
+            "surface-dim": "#121315",
+            "on-error": "#690005",
+            "on-background": "#e3e2e5",
+            "secondary-fixed-dim": "#b9c8de",
+            "on-secondary": "#233143",
+            "surface-container-low": "#1b1c1e",
+            "primary-container": "#5e5ce6",
+            "inverse-primary": "#4d4ad5",
+            "surface-bright": "#38393b",
+            "on-primary-fixed": "#0c006b",
+            "primary-fixed": "#e2dfff",
+            "tertiary-fixed-dim": "#ddb7ff",
+            "secondary-fixed": "#d4e4fa",
+            "primary": "#c2c1ff",
+            "on-secondary-fixed": "#0d1c2d",
+            "background": "#121315",
+            "on-surface": "#e3e2e5",
+            "on-surface-variant": "#c7c4d7",
+            "primary-fixed-dim": "#c2c1ff",
+            "on-tertiary-container": "#fbefff",
+            "on-secondary-fixed-variant": "#39485a",
+            "surface-tint": "#c2c1ff",
+            "on-primary-fixed-variant": "#332dbc",
+            "inverse-on-surface": "#303033",
+            "on-primary": "#1800a7",
+            "surface": "#121315",
+            "outline-variant": "#464554",
+            "surface-variant": "#343537",
+            "tertiary-container": "#9541e4"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Newsreader"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- SideNavBar Anchor -->
+<aside class="flex flex-col h-full border-r border-[#343537]/15 h-screen w-64 fixed left-0 top-0 border-r-0 bg-[#1b1c1e] dark:bg-[#1b1c1e] z-50">
+<div class="p-8">
+<div class="text-xl font-bold tracking-tight text-[#c2c1ff] font-serif mb-1">The Archive</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-label">Curated Intelligence</div>
+</div>
+<div class="mt-4 flex-1">
+<button class="mx-6 mb-8 bg-gradient-to-br from-primary to-primary-container text-on-primary font-label text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+        New Entry
+      </button>
+<nav class="space-y-1">
+<a class="text-[#c2c1ff] font-semibold border-r-2 border-[#c2c1ff] bg-[#292a2c]/50 px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="book_2">book_2</span>
+<span class="font-label text-sm">Library</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#292a2c] px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label text-sm">Archive</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#292a2c] px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_special">folder_special</span>
+<span class="font-label text-sm">Collections</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#292a2c] px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label text-sm">Analytics</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#292a2c] px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label text-sm">Settings</span>
+</a>
+</nav>
+</div>
+<div class="p-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover grayscale brightness-110" data-alt="portrait of a professional scholar with glasses in a dimly lit library with bokeh books in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5ES5BCrnVxiHe3LkZ8mVYueB6-8ml4RsOMadr1KRcElnzLo0GwFrF2bAegLFbFKnR6oy04HIHIp24-n4JOGbWICNAc-EJezWb5M0tnimR_TUnZcNfzsH7yk5JAORsjw8jLyiHgY1PcthS9xLiF9RoCfhb-YFlbvjrWKm_toSdLgQOWw5Y8Peb-lwG35OzztHXZEymBkcpDvPM6EMjLyltBuJ_zL8Bw4aPtKumkPu8OM9cmrqrd4OOlLAennkcjS0wYsVSjfilNkg"/>
+<div>
+<div class="text-sm font-semibold text-on-surface">Dr. Aris Thorne</div>
+<div class="text-[10px] uppercase text-slate-500 tracking-tighter">Chief Researcher</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-2 text-xs text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span> Help
+        </a>
+<a class="flex items-center gap-2 text-xs text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="shutter_speed">shutter_speed</span> Privacy
+        </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Anchor -->
+<header class="flex justify-between items-center px-8 h-16 fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#121315]/80 backdrop-blur-xl border-b border-[#343537]/15">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-400 font-label text-[11px] uppercase tracking-[0.2em]">
+<span>Papers</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary">Manuscripts</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-surface-container-high/40 border-0 rounded-full py-1.5 pl-10 pr-4 text-xs w-64 focus:ring-1 focus:ring-primary/30 transition-all font-label" placeholder="Search archive..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+</div>
+<div class="flex items-center gap-4 text-slate-400">
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined" data-icon="share">share</span></button>
+<button class="hover:text-primary transition-all"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+</header>
+<div class="pt-24 pb-32 flex justify-center px-8">
+<div class="w-full max-w-[1200px] flex gap-12">
+<!-- Left Column: Article -->
+<article class="flex-1 max-w-[720px]">
+<header class="mb-12">
+<div class="flex items-center gap-2 mb-6">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest rounded-full">Knowledge Deep Dive</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-slate-500 text-[11px] font-label uppercase">12 Min Read</span>
+</div>
+<h1 class="text-6xl font-medium text-on-surface leading-[1.1] mb-8 font-body italic tracking-tight">Understanding Structural Intelligence</h1>
+<div class="flex items-center justify-between py-6 border-y border-outline-variant/10">
+<div class="flex items-center gap-4">
+<img alt="Researcher Avatar" class="w-12 h-12 rounded-full object-cover grayscale" data-alt="Close up of a thoughtful academic woman with dark hair in a professional portrait with moody studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGWIh5T4L134HNj4xE0UxeWV0WR67MRpYfJlpyk-th3bxQA_LcVb2-I2xeKhDohwZlLKQ4oSs_e6MgSB1J6WKgBliGBZ0wsdH82YisTUVbfrWGV2ktCLD8p6tODaGDLwS-IzepoHxDfesYQELniv6n7l2hXMOKP8FdXSc3VQqT_8JkV-OlSZLFAJzhFL6IJpjbAbc5Ntf1PfI0SOUCtY_pxtgJuL7IdiPNIjiC6Jc1rOQc92CoyHuuuVhjaY7lSAcW0z4jMVrkjHY"/>
+<div>
+<div class="text-sm font-semibold text-on-surface">Dr. Elena Volkov</div>
+<div class="text-xs text-slate-500 font-label">Published October 24, 2023</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high hover:bg-surface-container-highest transition-colors rounded-lg text-xs font-label text-primary">
+<span class="material-symbols-outlined text-sm">download</span> Download PDF
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high hover:bg-surface-container-highest transition-colors rounded-lg text-xs font-label">
+<span class="material-symbols-outlined text-sm">link</span> Share Link
+                </button>
+</div>
+</div>
+</header>
+<section class="prose prose-invert prose-lg max-w-none">
+<p class="serif-drop-cap text-xl text-slate-300 leading-relaxed mb-12">
+              The evolution of structural intelligence within distributed digital systems represents a paradigm shift in how we categorize "thought" across non-biological networks. To understand the synthesis of data into knowledge, we must first analyze the topological foundations upon which information rests.
+            </p>
+<h2 class="text-3xl font-body italic text-primary mt-16 mb-6">I. The Topology of Thought</h2>
+<p class="text-slate-300 mb-8 leading-relaxed">
+              Modern neural architectures rely on the assumption that layers are discrete. However, a closer inspection of latent spaces suggests a more fluid, organic interconnection that mirrors the high-end editorial structures found in archival intelligence.
+            </p>
+<blockquote class="my-12 border-l-2 border-primary/40 pl-8 py-2 italic text-2xl text-on-surface-variant font-body">
+              "Intelligence is not the accumulation of data points, but the intentional curation of the relationships between them."
+            </blockquote>
+<p class="text-slate-300 mb-8 leading-relaxed">
+              When we observe the performance of these systems under stress, the structural integrity of the 'knowledge base' becomes the primary indicator of reliability.
+            </p>
+<!-- Sophisticated Code Block -->
+<div class="my-10 rounded-xl overflow-hidden glass-panel">
+<div class="bg-surface-container-highest/50 px-4 py-2 flex justify-between items-center border-b border-outline-variant/10">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/40"></div>
+</div>
+<span class="text-[10px] font-label uppercase tracking-widest text-slate-500">structural_node.py</span>
+</div>
+<pre class="p-6 text-sm font-mono leading-relaxed overflow-x-auto text-slate-300 bg-[#0d0e10]/40"><span class="text-tertiary">def</span> <span class="text-primary">synthesize_intelligence</span>(node_cluster):
+    <span class="text-slate-500">"""Calculates the relational weight of archival nodes"""</span>
+    weights = []
+    <span class="text-tertiary">for</span> node <span class="text-tertiary">in</span> node_cluster:
+        <span class="text-slate-400"># Apply editorial filter to data stream</span>
+        processed = node.curate(mode=<span class="text-secondary">'high_fidelity'</span>)
+        weights.append(processed.entropy * 0.98)
+
+    <span class="text-tertiary">return</span> sum(weights) / len(node_cluster)</pre>
+</div>
+<p class="text-slate-300 mb-8 leading-relaxed">
+              This synthesis allows for a 98% reliability rating in cross-node verification, making the digital archive a gold standard for professional authorship and peer-reviewed exploration.
+            </p>
+</section>
+</article>
+<!-- Right Sidebar: TOC & Stats -->
+<aside class="w-72 hidden xl:block">
+<div class="sticky top-24 space-y-8">
+<!-- Stats Card -->
+<div class="glass-panel rounded-2xl p-6">
+<div class="text-[10px] font-label uppercase tracking-widest text-slate-500 mb-6 flex items-center justify-between">
+                Document Stats
+                <span class="material-symbols-outlined text-sm">analytics</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest/50 p-4 rounded-xl border border-outline-variant/5">
+<div class="text-2xl font-bold text-primary font-label">98%</div>
+<div class="text-[10px] text-slate-500 font-label uppercase tracking-tight">Reliability</div>
+</div>
+<div class="bg-surface-container-lowest/50 p-4 rounded-xl border border-outline-variant/5">
+<div class="text-2xl font-bold text-on-surface font-label">24</div>
+<div class="text-[10px] text-slate-500 font-label uppercase tracking-tight">Citations</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant/10">
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="text-slate-400">Archival Integrity</span>
+<span class="text-tertiary font-semibold">High</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[92%] h-full bg-gradient-to-r from-primary to-tertiary"></div>
+</div>
+</div>
+</div>
+<!-- Table of Contents -->
+<div class="p-4">
+<h4 class="text-[10px] font-label uppercase tracking-[0.2em] text-slate-500 mb-6">Contents</h4>
+<nav class="space-y-4">
+<a class="group flex items-start gap-3" href="#">
+<span class="text-[10px] font-label text-primary mt-1">01</span>
+<span class="text-sm font-medium text-on-surface group-hover:text-primary transition-colors">The Topology of Thought</span>
+</a>
+<a class="group flex items-start gap-3" href="#">
+<span class="text-[10px] font-label text-slate-600 mt-1">02</span>
+<span class="text-sm font-medium text-slate-400 group-hover:text-primary transition-colors">Synthesis &amp; Relational Weight</span>
+</a>
+<a class="group flex items-start gap-3" href="#">
+<span class="text-[10px] font-label text-slate-600 mt-1">03</span>
+<span class="text-sm font-medium text-slate-400 group-hover:text-primary transition-colors">Digital Archive Frameworks</span>
+</a>
+<a class="group flex items-start gap-3" href="#">
+<span class="text-[10px] font-label text-slate-600 mt-1">04</span>
+<span class="text-sm font-medium text-slate-400 group-hover:text-primary transition-colors">Bibliography &amp; Data Sets</span>
+</a>
+</nav>
+</div>
+<!-- Reference Card -->
+<div class="relative rounded-2xl overflow-hidden group">
+<img alt="Research Paper Background" class="w-full h-40 object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" data-alt="Abstract macro shot of old textured parchment paper with subtle ink splatters and dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwC_PFNxBN-p0HhMCEYH8H-icM_A4I2g_RGDTadK3tp_LENLsScK4mUpVD1LKfS9AL1fW-BkqDChlx-mbhp2ekyMAp5gpEAcOh7jBmfpEJ__L9jcZDh6IEYr8Fg25SsZ0Dp58Be1S1nqdgmIIU-deESrzezB6THZGRjYvBmcqwccGrdloK7re0jDrSbU9IZgHqD2c1SoMDSL2FZZvoLDnZaL-DO4pt53ZHEqMZWFG1FzwQ9EcZoMIE302xgf_ssNysG6UOR7Ocizk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="text-[10px] font-label uppercase text-primary mb-1">Related Manuscript</div>
+<div class="text-xs font-semibold leading-snug">The Ethics of Algorithmic Curation</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Floating Footer Action (Mobile Only Placeholder) -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</body></html>
