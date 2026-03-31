@@ -10,11 +10,16 @@ export default siteConfig({
   author: 'Yasuyuki Sakane',
   description: 'Trucks of Yasuyuki Sakane’s Structual Intelligence',
 
-  // ソーシャル
-  twitter: 'sakane_dev',
-  github: 'sakane-dev',
-  linkedin: 'yasuyukis',
+  // ソーシャル情報
+  // ※ナビゲーションスタイルの変更により画面右側からは消えますが、メタデータとして保持します
+  // twitter: 'sakane_dev',
+  // github: 'sakane-dev',
+  // linkedin: 'yasuyukis',
 
   // プレビュー画像機能
   isPreviewImageSupportEnabled: true,
+
+  // UIとルーティングの最適化設定
+  navigationStyle: 'custom',
+  includeNotionIdInUrls: false,
 })

@@ -57,6 +57,31 @@ body {
   background-color: var(--fg-color-1);
 }
 
-::-webkit-scrollbar-track {           
+::-webkit-scrollbar-track {
     background-color: var(--bg-color);
+}
+
+:root {
+  /* システムフォントを上書きし、モダンなフォントを適用 */
+  --notion-font: 'Helvetica Neue', 'Inter', 'Noto Sans JP', sans-serif !important;
+}
+
+/* 全体のベースサイズと行間をスマートに調整 */
+.notion {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #333333 !important;
+}
+
+/* 巨大すぎるページタイトルや見出しのスケールを縮小 */
+.notion-title {
+  font-size: 2.2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 1rem !important;
+}
+
+.notion-h1, .notion-h2, .notion-h3 {
+  margin-top: 2em !important;
+  margin-bottom: 0.5em !important;
 }
