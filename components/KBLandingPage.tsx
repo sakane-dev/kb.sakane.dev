@@ -485,7 +485,7 @@ export function KBLandingPage({
             </div>
             <nav className='kb-topbar__nav'>
               <a
-                href='https://pages.sakane.dev/structural-intelligence/'
+                href='https://www.sakane.dev/'
                 className='kb-topbar__link'
                 target='_blank'
                 rel='noopener noreferrer'
