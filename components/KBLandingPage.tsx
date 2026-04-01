@@ -245,6 +245,9 @@ function extractPapersFromRecordMap(
 
     const url = urlMapper(pageId)
 
+    // Untitled（タイトル未設定）または unpublished はスキップ
+    if (title === 'Untitled' || !published) continue
+
     papers.push({
       id: parsePageId(pageId, { uuid: false }) || pageId,
       title,
@@ -442,7 +445,9 @@ export function KBLandingPage({
 
   const allTags = React.useMemo(() => {
     const tagSet = new Set<string>()
+    // published 論文のみからタグを集計（"0 research domains" バグ対策）
     for (const paper of papers) {
+      if (!paper.published) continue
       for (const tag of paper.tags) tagSet.add(tag)
     }
     return Array.from(tagSet).sort()
