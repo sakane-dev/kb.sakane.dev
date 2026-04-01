@@ -153,7 +153,7 @@ function extractPapersFromRecordMap(
   if (!collection) return papers
 
   const schema = collection.schema || {}
-  const schemaEntries = Object.entries(schema)
+  const schemaEntries = Object.entries(schema) as [string, any][]
 
   const titleKey = schemaEntries.find(([, v]) => v.type === 'title')?.[0]
   const slugKey = schemaEntries.find(([, v]) => v.name?.toLowerCase() === 'slug')?.[0]
