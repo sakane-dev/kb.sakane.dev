@@ -254,7 +254,7 @@ export function NotionPage({
   }
 
   // ==========================================================================
-  // ROOT PAGE → Custom KB Landing Page (MD3 Bento Grid)
+  // ROOT PAGE → Custom KB Landing Page
   // ==========================================================================
   const isRootPage =
     parsePageId(block?.id) === parsePageId(site.rootNotionPageId)

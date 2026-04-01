@@ -2,7 +2,6 @@ import * as React from 'react'
 import Link from 'next/link'
 import {
   type ExtendedRecordMap,
-  type CollectionInstance,
   type Block
 } from 'notion-types'
 import {
@@ -15,7 +14,6 @@ import {
 import type * as types from '@/lib/types'
 import * as config from '@/lib/config'
 import { mapPageUrl } from '@/lib/map-page-url'
-import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { PageHead } from './PageHead'
 
@@ -37,74 +35,73 @@ interface PaperCard {
 // Tag config — MD3 color system
 // ---------------------------------------------------------------------------
 
-const TAG_CONFIG: Record<string, { bg: string; text: string; border: string }> =
-  {
-    'Structual Intelligence': {
-      bg: 'rgba(194,193,255,0.15)',
-      text: '#c2c1ff',
-      border: 'rgba(194,193,255,0.3)'
-    },
-    'Structural Intelligence': {
-      bg: 'rgba(194,193,255,0.15)',
-      text: '#c2c1ff',
-      border: 'rgba(194,193,255,0.3)'
-    },
-    構造知性: {
-      bg: 'rgba(194,193,255,0.15)',
-      text: '#c2c1ff',
-      border: 'rgba(194,193,255,0.3)'
-    },
-    'Career Design': {
-      bg: 'rgba(221,183,255,0.15)',
-      text: '#ddb7ff',
-      border: 'rgba(221,183,255,0.3)'
-    },
-    'Co-Creation': {
-      bg: 'rgba(185,200,222,0.15)',
-      text: '#b9c8de',
-      border: 'rgba(185,200,222,0.3)'
-    },
-    AI: {
-      bg: 'rgba(255,180,171,0.12)',
-      text: '#ffb4ab',
-      border: 'rgba(255,180,171,0.25)'
-    },
-    RAG: {
-      bg: 'rgba(194,193,255,0.10)',
-      text: '#c2c1ff',
-      border: 'rgba(194,193,255,0.2)'
-    },
-    Agent: {
-      bg: 'rgba(221,183,255,0.10)',
-      text: '#ddb7ff',
-      border: 'rgba(221,183,255,0.2)'
-    },
-    Cybersecurity: {
-      bg: 'rgba(255,180,171,0.15)',
-      text: '#ffb4ab',
-      border: 'rgba(255,180,171,0.3)'
-    },
-    Engineering: {
-      bg: 'rgba(185,200,222,0.10)',
-      text: '#b9c8de',
-      border: 'rgba(185,200,222,0.2)'
-    },
-    'Full-Stack': {
-      bg: 'rgba(185,200,222,0.10)',
-      text: '#b9c8de',
-      border: 'rgba(185,200,222,0.2)'
-    },
-    CCBR: {
-      bg: 'rgba(255,180,171,0.12)',
-      text: '#ffb4ab',
-      border: 'rgba(255,180,171,0.25)'
-    },
-    DX: {
-      bg: 'rgba(194,193,255,0.10)',
-      text: '#c2c1ff',
-      border: 'rgba(194,193,255,0.2)'
-    }
+const TAG_CONFIG: Record<string, { bg: string; text: string; border: string }> = {
+  'Structual Intelligence': {
+    bg: 'rgba(194,193,255,0.15)',
+    text: '#c2c1ff',
+    border: 'rgba(194,193,255,0.3)'
+  },
+  'Structural Intelligence': {
+    bg: 'rgba(194,193,255,0.15)',
+    text: '#c2c1ff',
+    border: 'rgba(194,193,255,0.3)'
+  },
+  構造知性: {
+    bg: 'rgba(194,193,255,0.15)',
+    text: '#c2c1ff',
+    border: 'rgba(194,193,255,0.3)'
+  },
+  'Career Design': {
+    bg: 'rgba(221,183,255,0.15)',
+    text: '#ddb7ff',
+    border: 'rgba(221,183,255,0.3)'
+  },
+  'Co-Creation': {
+    bg: 'rgba(185,200,222,0.15)',
+    text: '#b9c8de',
+    border: 'rgba(185,200,222,0.3)'
+  },
+  AI: {
+    bg: 'rgba(255,180,171,0.12)',
+    text: '#ffb4ab',
+    border: 'rgba(255,180,171,0.25)'
+  },
+  RAG: {
+    bg: 'rgba(194,193,255,0.10)',
+    text: '#c2c1ff',
+    border: 'rgba(194,193,255,0.2)'
+  },
+  Agent: {
+    bg: 'rgba(221,183,255,0.10)',
+    text: '#ddb7ff',
+    border: 'rgba(221,183,255,0.2)'
+  },
+  Cybersecurity: {
+    bg: 'rgba(255,180,171,0.15)',
+    text: '#ffb4ab',
+    border: 'rgba(255,180,171,0.3)'
+  },
+  Engineering: {
+    bg: 'rgba(185,200,222,0.10)',
+    text: '#b9c8de',
+    border: 'rgba(185,200,222,0.2)'
+  },
+  'Full-Stack': {
+    bg: 'rgba(185,200,222,0.10)',
+    text: '#b9c8de',
+    border: 'rgba(185,200,222,0.2)'
+  },
+  CCBR: {
+    bg: 'rgba(255,180,171,0.12)',
+    text: '#ffb4ab',
+    border: 'rgba(255,180,171,0.25)'
+  },
+  DX: {
+    bg: 'rgba(194,193,255,0.10)',
+    text: '#c2c1ff',
+    border: 'rgba(194,193,255,0.2)'
   }
+}
 
 const DEFAULT_TAG_STYLE = {
   bg: 'rgba(145,143,160,0.10)',
@@ -114,6 +111,25 @@ const DEFAULT_TAG_STYLE = {
 
 function getTagStyle(tag: string) {
   return TAG_CONFIG[tag] || DEFAULT_TAG_STYLE
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function formatSafeDate(dateStr: string | null): string {
+  if (!dateStr) return 'Draft'
+  try {
+    const parts = dateStr.split('-')
+    if (parts.length !== 3) return dateStr
+    const month = parseInt(parts[1]!, 10)
+    const day = parseInt(parts[2]!, 10)
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const monthName = months[month - 1] || 'Jan'
+    return `${monthName} ${day}, ${parts[0]}`
+  } catch {
+    return dateStr
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -130,24 +146,17 @@ function extractPapersFromRecordMap(
   if (collectionIds.length === 0) return papers
 
   const collectionId = collectionIds[0]!
-  const collection = recordMap.collection[collectionId]?.value
+  const collection = recordMap.collection[collectionId]?.value as any
   if (!collection) return papers
 
   const schema = collection.schema || {}
   const schemaEntries = Object.entries(schema)
 
-  const slugKey = schemaEntries.find(
-    ([, v]) => v.name?.toLowerCase() === 'slug'
-  )?.[0]
-  const publishedKey = schemaEntries.find(
-    ([, v]) => v.name?.toLowerCase() === 'published'
-  )?.[0]
-  const dateKey = schemaEntries.find(
-    ([, v]) => v.name?.toLowerCase() === 'date'
-  )?.[0]
-  const tagsKey = schemaEntries.find(
-    ([, v]) => v.name?.toLowerCase() === 'tags'
-  )?.[0]
+  const titleKey = schemaEntries.find(([, v]) => (v as any).type === 'title')?.[0]
+  const slugKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'slug')?.[0]
+  const publishedKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'published')?.[0]
+  const dateKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'date')?.[0]
+  const tagsKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'tags')?.[0]
 
   const collectionQueryIds = Object.keys(recordMap.collection_query || {})
   let pageIds: string[] = []
@@ -157,7 +166,7 @@ function extractPapersFromRecordMap(
     if (queryResults) {
       const viewIds = Object.keys(queryResults)
       for (const viewId of viewIds) {
-        const result = queryResults[viewId] as CollectionInstance
+        const result = queryResults[viewId] as any
         if (result?.collection_group_results?.blockIds) {
           pageIds = result.collection_group_results.blockIds
           break
@@ -191,10 +200,16 @@ function extractPapersFromRecordMap(
     const block = recordMap.block[pageId]?.value as Block
     if (!block) continue
 
-    const title = getBlockTitle(block, recordMap) || 'Untitled'
     const properties = block.properties || {}
 
-    const slug = slugKey ? getTextContent(properties[slugKey]) : ''
+    let title = 'Untitled'
+    if (titleKey && properties[titleKey]) {
+      title = getTextContent(properties[titleKey]) || 'Untitled'
+    } else {
+      title = getBlockTitle(block, recordMap) || 'Untitled'
+    }
+
+    const slug = slugKey && properties[slugKey] ? getTextContent(properties[slugKey]) : ''
 
     let published = false
     if (publishedKey && properties[publishedKey]) {
@@ -236,6 +251,15 @@ function extractPapersFromRecordMap(
     })
   }
 
+  // Deterministic sort — NO localeCompare (locale differs between server/client)
+  papers.sort((a, b) => {
+    if (a.published !== b.published) return a.published ? -1 : 1
+    const dateA = a.date || ''
+    const dateB = b.date || ''
+    if (dateA !== dateB) return dateA < dateB ? 1 : -1
+    return a.id < b.id ? -1 : 1
+  })
+
   return papers
 }
 
@@ -260,15 +284,15 @@ function TagBadge({ tag }: { tag: string }) {
 }
 
 function FeaturedCard({ paper }: { paper: PaperCard }) {
+  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+
   return (
     <Link href={paper.url} className='kb-card kb-card--featured'>
       <div className='kb-card__bg-featured' />
       <div className='kb-card__content kb-card__content--featured'>
         <div className='kb-card__header'>
           <span className='kb-badge--primary'>Primary Thesis</span>
-          <span className='kb-meta'>
-            {paper.tags.length} topics
-          </span>
+          <span className='kb-meta'>{paper.tags.length} topics</span>
         </div>
         <h3 className='kb-card__title--featured'>{paper.title}</h3>
         <div className='kb-card__tags'>
@@ -277,15 +301,7 @@ function FeaturedCard({ paper }: { paper: PaperCard }) {
           ))}
         </div>
         <div className='kb-card__footer'>
-          <span className='kb-meta'>
-            {paper.date
-              ? new Date(paper.date).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric'
-                })
-              : 'Draft'}
-          </span>
+          <span className='kb-meta'>{dateText}</span>
           <span className='kb-arrow-btn'>→</span>
         </div>
       </div>
@@ -293,19 +309,37 @@ function FeaturedCard({ paper }: { paper: PaperCard }) {
   )
 }
 
-function GridCard({ paper, variant }: { paper: PaperCard; variant: 'image' | 'solid' }) {
+function GridCard({
+  paper,
+  variant
+}: {
+  paper: PaperCard
+  variant: 'image' | 'solid'
+}) {
   return (
-    <Link href={paper.url} className={`kb-card kb-card--grid ${variant === 'image' ? 'kb-card--with-bg' : 'kb-card--solid'}`}>
+    <Link
+      href={paper.url}
+      className={`kb-card kb-card--grid ${variant === 'image' ? 'kb-card--with-bg' : 'kb-card--solid'}`}
+    >
       {variant === 'image' && (
         <>
           <div className='kb-card__bg-grid' />
           <div className='kb-card__gradient' />
         </>
       )}
-      <div className={`kb-card__content kb-card__content--grid ${variant === 'image' ? 'kb-card__content--bottom' : ''}`}>
+      <div
+        className={`kb-card__content kb-card__content--grid ${variant === 'image' ? 'kb-card__content--bottom' : ''}`}
+      >
         {variant === 'solid' && (
           <div className='kb-card__icon-box'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5'>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={1.5}
+            >
               <path d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' />
             </svg>
           </div>
@@ -334,7 +368,14 @@ function ActivityRow({ paper }: { paper: PaperCard }) {
   return (
     <Link href={paper.url} className='kb-row'>
       <div className='kb-row__icon'>
-        <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.5'>
+        <svg
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth={1.5}
+        >
           <path d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
         </svg>
       </div>
@@ -356,7 +397,15 @@ function ActivityRow({ paper }: { paper: PaperCard }) {
           <span className='kb-status kb-status--draft'>Draft</span>
         )}
       </div>
-      <svg className='kb-row__chevron' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'>
+      <svg
+        className='kb-row__chevron'
+        width='16'
+        height='16'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        strokeWidth={2}
+      >
         <path d='M9 18l6-6-6-6' />
       </svg>
     </Link>
@@ -376,8 +425,9 @@ export function KBLandingPage({
   recordMap: ExtendedRecordMap
   pageId: string
 }) {
-  const { isDarkMode } = useDarkMode()
   const [activeTag, setActiveTag] = React.useState<string | null>(null)
+
+  const currentYear = React.useMemo(() => new Date().getFullYear(), [])
 
   const papers = React.useMemo(
     () => extractPapersFromRecordMap(recordMap, site),
@@ -389,7 +439,7 @@ export function KBLandingPage({
     for (const paper of papers) {
       for (const tag of paper.tags) tagSet.add(tag)
     }
-    return Array.from(tagSet)
+    return Array.from(tagSet).sort()
   }, [papers])
 
   const filtered = React.useMemo(() => {
@@ -397,7 +447,6 @@ export function KBLandingPage({
     return papers.filter((p) => p.tags.includes(activeTag))
   }, [papers, activeTag])
 
-  // Layout split
   const featured = filtered.find((p) => p.published) || filtered[0]
   const rest = filtered.filter((p) => p !== featured)
   const gridCards = rest.slice(0, 5)
@@ -463,8 +512,7 @@ export function KBLandingPage({
             <p className='kb-hero__sub'>
               構造知性の軌跡 — A curated mapping of technical intelligence,
               architectural frameworks, and strategic insights across{' '}
-              <strong>{papers.length}</strong> documents and{' '}
-              <strong>{allTags.length}</strong> research domains.
+              {papers.length} documents and {allTags.length} research domains.
             </p>
             <div className='kb-filters'>
               <button
@@ -524,7 +572,9 @@ export function KBLandingPage({
         </main>
 
         <footer className='kb-footer'>
-          <span>© {new Date().getFullYear()} {config.author}</span>
+          <span suppressHydrationWarning>
+            © {currentYear} {config.author}
+          </span>
           <span className='kb-footer__dot'>·</span>
           <span>{publishedCount} published</span>
           <span className='kb-footer__dot'>·</span>

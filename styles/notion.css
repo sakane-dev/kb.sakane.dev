@@ -403,3 +403,28 @@
 .notion-equation.notion-equation-block{
   align-items: center;
 }
+
+/* MD3 Dark Theme Sync & Academic Font Optimization */
+.notion {
+  color: #e3e2e5 !important;
+  font-family: 'Newsreader', 'Georgia', serif !important;
+}
+
+.notion-text,
+.notion-title,
+.notion-h1,
+.notion-h2,
+.notion-h3,
+.notion-h4,
+.notion-list,
+.notion-quote,
+.notion-callout-text {
+  color: #e3e2e5 !important;
+}
+
+/* 論文領域の最大幅をAppLayoutに合わせて最適化 */
+.notion-page-cover,
+.notion-frame {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
