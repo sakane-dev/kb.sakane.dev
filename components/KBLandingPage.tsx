@@ -126,7 +126,7 @@ function formatSafeDate(dateStr: string | null): string {
     const month = parseInt(parts[1] ?? '1', 10)
     const day = parseInt(parts[2] ?? '1', 10)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    const monthName = months[month - 1] || 'Jan'
+    const monthName = months[month - 1] ?? 'Jan'
     return `${monthName} ${day}, ${year}`
   } catch {
     return dateStr
