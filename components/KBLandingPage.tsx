@@ -122,11 +122,12 @@ function formatSafeDate(dateStr: string | null): string {
   try {
     const parts = dateStr.split('-')
     if (parts.length !== 3) return dateStr
-    const month = parseInt(parts[1]!, 10)
-    const day = parseInt(parts[2]!, 10)
+    const year = parts[0]
+    const month = parseInt(parts[1], 10)
+    const day = parseInt(parts[2], 10)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const monthName = months[month - 1] || 'Jan'
-    return `${monthName} ${day}, ${parts[0]}`
+    return `${monthName} ${day}, ${year}`
   } catch {
     return dateStr
   }
@@ -146,17 +147,19 @@ function extractPapersFromRecordMap(
   if (collectionIds.length === 0) return papers
 
   const collectionId = collectionIds[0]!
-  const collection = recordMap.collection[collectionId]?.value as any
+  // Notion API returns double-nested: collection[id].value.value
+  const collectionWrapper = recordMap.collection[collectionId]?.value as any
+  const collection = collectionWrapper?.value ?? collectionWrapper
   if (!collection) return papers
 
   const schema = collection.schema || {}
   const schemaEntries = Object.entries(schema)
 
-  const titleKey = schemaEntries.find(([, v]) => (v as any).type === 'title')?.[0]
-  const slugKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'slug')?.[0]
-  const publishedKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'published')?.[0]
-  const dateKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'date')?.[0]
-  const tagsKey = schemaEntries.find(([, v]) => (v as any).name?.toLowerCase() === 'tags')?.[0]
+  const titleKey = schemaEntries.find(([, v]) => v.type === 'title')?.[0]
+  const slugKey = schemaEntries.find(([, v]) => v.name?.toLowerCase() === 'slug')?.[0]
+  const publishedKey = schemaEntries.find(([, v]) => v.name?.toLowerCase() === 'published')?.[0]
+  const dateKey = schemaEntries.find(([, v]) => v.name?.toLowerCase() === 'date')?.[0]
+  const tagsKey = schemaEntries.find(([, v]) => v.name?.toLowerCase() === 'tags')?.[0]
 
   const collectionQueryIds = Object.keys(recordMap.collection_query || {})
   let pageIds: string[] = []
@@ -182,7 +185,8 @@ function extractPapersFromRecordMap(
 
   if (pageIds.length === 0) {
     for (const [blockId, blockData] of Object.entries(recordMap.block || {})) {
-      const block = blockData?.value as Block
+      const blockWrapper = blockData?.value as any
+      const block = (blockWrapper?.value ?? blockWrapper) as Block
       if (
         block?.type === 'page' &&
         block?.parent_table === 'collection' &&
@@ -197,7 +201,8 @@ function extractPapersFromRecordMap(
   const urlMapper = mapPageUrl(site, recordMap, searchParams)
 
   for (const pageId of pageIds) {
-    const block = recordMap.block[pageId]?.value as Block
+    const blockWrapper = recordMap.block[pageId]?.value as any
+    const block = (blockWrapper?.value ?? blockWrapper) as Block
     if (!block) continue
 
     const properties = block.properties || {}
@@ -251,13 +256,13 @@ function extractPapersFromRecordMap(
     })
   }
 
-  // Deterministic sort — NO localeCompare (locale differs between server/client)
+  // 決定論的ソート（ハイドレーション不一致防止）
   papers.sort((a, b) => {
     if (a.published !== b.published) return a.published ? -1 : 1
     const dateA = a.date || ''
     const dateB = b.date || ''
-    if (dateA !== dateB) return dateA < dateB ? 1 : -1
-    return a.id < b.id ? -1 : 1
+    if (dateA !== dateB) return dateB.localeCompare(dateA)
+    return a.id.localeCompare(b.id)
   })
 
   return papers
@@ -427,6 +432,7 @@ export function KBLandingPage({
 }) {
   const [activeTag, setActiveTag] = React.useState<string | null>(null)
 
+  // サーバーとクライアントで完全に同一の値にする（Hydration Error 防止）
   const currentYear = React.useMemo(() => new Date().getFullYear(), [])
 
   const papers = React.useMemo(
