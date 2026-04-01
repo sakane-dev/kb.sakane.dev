@@ -122,9 +122,9 @@ function formatSafeDate(dateStr: string | null): string {
   try {
     const parts = dateStr.split('-')
     if (parts.length !== 3) return dateStr
-    const year = parts[0]
-    const month = parseInt(parts[1], 10)
-    const day = parseInt(parts[2], 10)
+    const year = parts[0] ?? ''
+    const month = parseInt(parts[1] ?? '1', 10)
+    const day = parseInt(parts[2] ?? '1', 10)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     const monthName = months[month - 1] || 'Jan'
     return `${monthName} ${day}, ${year}`
