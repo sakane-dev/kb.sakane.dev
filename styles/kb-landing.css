@@ -114,12 +114,12 @@
 
 .kb-hero__title {
   font-family: 'Newsreader', 'Georgia', serif;
-  font-size: 3.25rem;
-  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 200;
   color: var(--md-on-surface);
   margin: 0 0 0.75rem;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .kb-hero__sub {
@@ -336,16 +336,18 @@
 
 .kb-card__title--grid {
   font-family: 'Newsreader', 'Georgia', serif;
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.45;
   margin: 0 0 auto;
   color: var(--md-on-surface);
-  /* Clamp */
+  /* Clamp — 日本語タイトル対応 */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .kb-card__tags {
@@ -501,9 +503,14 @@
   font-weight: 600;
   color: var(--md-on-surface);
   margin: 0;
-  white-space: nowrap;
+  /* 日本語タイトル折り返し対応: 最大2行 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
 }
 
 .kb-row__meta {
