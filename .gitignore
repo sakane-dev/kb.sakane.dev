@@ -37,3 +37,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# local dev / prototypes
+.claude/
+google-ai-studio/
+components/home.html
+components/SKILL.md
+home.png
+*.code-workspace
