@@ -272,6 +272,154 @@ function extractPapersFromRecordMap(
 }
 
 // ---------------------------------------------------------------------------
+// Icons (SVG inline)
+// ---------------------------------------------------------------------------
+
+function IconHub() {
+  return (
+    <svg width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.2}>
+      <circle cx='12' cy='12' r='3' />
+      <path d='M12 3v3m0 12v3M3 12h3m12 0h3M6.34 6.34l2.12 2.12m7.08 7.08 2.12 2.12M17.66 6.34l-2.12 2.12M8.46 15.54l-2.12 2.12' />
+    </svg>
+  )
+}
+
+function IconTrend() {
+  return (
+    <svg width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <polyline points='23 6 13.5 15.5 8.5 10.5 1 18' />
+      <polyline points='17 6 23 6 23 12' />
+    </svg>
+  )
+}
+
+function IconFlask() {
+  return (
+    <svg width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M9 3h6M8.5 3v6.5L5 15.5a3 3 0 002.7 4.5h8.6a3 3 0 002.7-4.5L15.5 9.5V3' />
+    </svg>
+  )
+}
+
+function IconBook() {
+  return (
+    <svg width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' />
+    </svg>
+  )
+}
+
+function IconSearch() {
+  return (
+    <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <circle cx='11' cy='11' r='8' />
+      <path d='m21 21-4.35-4.35' />
+    </svg>
+  )
+}
+
+function IconDocument() {
+  return (
+    <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
+    </svg>
+  )
+}
+
+function IconGraph() {
+  return (
+    <svg width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22' />
+    </svg>
+  )
+}
+
+function IconArrow() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2}>
+      <path d='M7 17L17 7M17 7H7M17 7v10' />
+    </svg>
+  )
+}
+
+function IconDashboard() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <rect x='3' y='3' width='7' height='7' rx='1' />
+      <rect x='14' y='3' width='7' height='7' rx='1' />
+      <rect x='3' y='14' width='7' height='7' rx='1' />
+      <rect x='14' y='14' width='7' height='7' rx='1' />
+    </svg>
+  )
+}
+
+function IconTag() {
+  return (
+    <svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z' />
+    </svg>
+  )
+}
+
+function IconExternal() {
+  return (
+    <svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' />
+    </svg>
+  )
+}
+
+function IconLibrary() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' />
+    </svg>
+  )
+}
+
+function IconResearch() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M9 3h6M8.5 3v6.5L5 15.5a3 3 0 002.7 4.5h8.6a3 3 0 002.7-4.5L15.5 9.5V3' />
+    </svg>
+  )
+}
+
+function IconArchive() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4' />
+    </svg>
+  )
+}
+
+function IconTeam() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <path d='M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' />
+    </svg>
+  )
+}
+
+function IconHelp() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <circle cx='12' cy='12' r='10' />
+      <path d='M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01' />
+    </svg>
+  )
+}
+
+function IconSettings() {
+  return (
+    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+      <circle cx='12' cy='12' r='3' />
+      <path d='M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z' />
+    </svg>
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
 
@@ -291,132 +439,198 @@ function TagBadge({ tag }: { tag: string }) {
   )
 }
 
-function FeaturedCard({ paper }: { paper: PaperCard }) {
-  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+const SIDEBAR_NAV = [
+  { icon: IconDashboard, label: 'DASHBOARD' },
+  { icon: IconLibrary,   label: 'LIBRARY'   },
+  { icon: IconResearch,  label: 'RESEARCH'  },
+  { icon: IconArchive,   label: 'ARCHIVE'   },
+  { icon: IconTeam,      label: 'TEAM'      },
+]
 
+function SidebarNav({
+  allTags,
+  activeTag,
+  onTagSelect,
+  publishedCount,
+  totalCount
+}: {
+  allTags: string[]
+  activeTag: string | null
+  onTagSelect: (tag: string | null) => void
+  publishedCount: number
+  totalCount: number
+}) {
   return (
-    <Link href={paper.url} className='kb-card kb-card--featured'>
-      <div className='kb-card__bg-featured' />
-      <div className='kb-card__content kb-card__content--featured'>
-        <div className='kb-card__header'>
-          <span className='kb-badge--primary'>Primary Thesis</span>
-          <span className='kb-meta'>{paper.tags.length} topics</span>
+    <aside className='kb-sidebar'>
+      <div className='kb-sidebar__top'>
+        <span className='kb-sidebar__logo'>The Digital Archive</span>
+        <p className='kb-sidebar__section-label'>Workspace: Pro Intelligence</p>
+        <nav className='kb-sidebar__nav'>
+          {SIDEBAR_NAV.map(({ icon: Icon, label }) => (
+            <button
+              key={label}
+              className={`kb-sidebar__link ${label === 'DASHBOARD' && activeTag === null ? 'kb-sidebar__link--active' : ''}`}
+              onClick={label === 'DASHBOARD' ? () => onTagSelect(null) : undefined}
+            >
+              <span className='kb-sidebar__link-icon'><Icon /></span>
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {allTags.length > 0 && (
+          <>
+            <p className='kb-sidebar__section-label' style={{ marginTop: '1.5rem' }}>Filter by Tag</p>
+            <nav className='kb-sidebar__nav'>
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  className={`kb-sidebar__link ${activeTag === tag ? 'kb-sidebar__link--active' : ''}`}
+                  onClick={() => onTagSelect(activeTag === tag ? null : tag)}
+                >
+                  <span className='kb-sidebar__link-icon'><IconTag /></span>
+                  {tag}
+                </button>
+              ))}
+            </nav>
+          </>
+        )}
+      </div>
+
+      <div className='kb-sidebar__bottom'>
+        <div className='kb-sidebar__bottom-nav'>
+          <a href='#' className='kb-sidebar__link'>
+            <span className='kb-sidebar__link-icon'><IconHelp /></span>
+            HELP
+          </a>
+          <a href='#' className='kb-sidebar__link'>
+            <span className='kb-sidebar__link-icon'><IconSettings /></span>
+            SETTINGS
+          </a>
         </div>
-        <h3 className='kb-card__title--featured'>{paper.title}</h3>
-        <div className='kb-card__tags'>
+        <div className='kb-sidebar__profile'>
+          <div className='kb-sidebar__avatar'>
+            {(config.author?.[0] ?? 'S').toUpperCase()}
+          </div>
+          <div className='kb-sidebar__profile-info'>
+            <p className='kb-sidebar__profile-name'>{config.author}</p>
+            <p className='kb-sidebar__profile-sub'>{publishedCount} published · {totalCount} total</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
+function BentoLargeCard({ paper }: { paper: PaperCard }) {
+  return (
+    <Link href={paper.url} className='kb-bento-large'>
+      <div className='kb-bento-large__bg' />
+      <div className='kb-bento-large__glow' />
+      <div className='kb-bento-large__content'>
+        <span className='kb-bento-large__icon'><IconHub /></span>
+        <h3 className='kb-bento-large__title'>{paper.title}</h3>
+        <div className='kb-bento-large__tags'>
           {paper.tags.map((tag) => (
             <TagBadge key={tag} tag={tag} />
           ))}
         </div>
-        <div className='kb-card__footer'>
-          <span className='kb-meta'>{dateText}</span>
-          <span className='kb-arrow-btn'>→</span>
-        </div>
       </div>
     </Link>
   )
 }
 
-function GridCard({
-  paper,
-  variant
-}: {
-  paper: PaperCard
-  variant: 'image' | 'solid'
-}) {
+function BentoMediumCard({ paper }: { paper: PaperCard }) {
+  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+
   return (
-    <Link
-      href={paper.url}
-      className={`kb-card kb-card--grid ${variant === 'image' ? 'kb-card--with-bg' : 'kb-card--solid'}`}
-    >
-      {variant === 'image' && (
-        <>
-          <div className='kb-card__bg-grid' />
-          <div className='kb-card__gradient' />
-        </>
-      )}
-      <div
-        className={`kb-card__content kb-card__content--grid ${variant === 'image' ? 'kb-card__content--bottom' : ''}`}
-      >
-        {variant === 'solid' && (
-          <div className='kb-card__icon-box'>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth={1.5}
-            >
-              <path d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' />
-            </svg>
+    <Link href={paper.url} className='kb-bento-medium'>
+      <div className='kb-bento-medium__body'>
+        <span className='kb-bento-medium__icon'><IconTrend /></span>
+        <h3 className='kb-bento-medium__title'>{paper.title}</h3>
+        <p className='kb-bento-medium__meta'>{dateText}</p>
+      </div>
+      <div className='kb-bento-medium__decor'>
+        <IconBook />
+      </div>
+    </Link>
+  )
+}
+
+function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
+  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+
+  return (
+    <Link href={paper.url} className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}>
+      <span className='kb-bento-small__icon'>
+        {alt ? <IconBook /> : <IconFlask />}
+      </span>
+      <h4 className='kb-bento-small__title'>{paper.title}</h4>
+      <p className='kb-bento-small__meta'>{dateText}</p>
+    </Link>
+  )
+}
+
+const STREAM_ICON_COLORS = ['', 'kb-stream-item__icon--tertiary', 'kb-stream-item__icon--secondary'] as const
+
+function StreamItem({ paper, index }: { paper: PaperCard; index: number }) {
+  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+  const category = paper.tags[0] ?? 'Research'
+  const colorClass = STREAM_ICON_COLORS[index % 3] ?? ''
+
+  return (
+    <Link href={paper.url} className='kb-stream-item'>
+      <div className='kb-stream-item__left'>
+        <div className={`kb-stream-item__icon-box ${colorClass}`}>
+          <IconDocument />
+        </div>
+        <div>
+          <h4 className='kb-stream-item__title'>{paper.title}</h4>
+          <div className='kb-stream-item__meta'>
+            <span className='kb-stream-item__date'>{dateText}</span>
+            <span className='kb-stream-item__dot' />
+            <span className='kb-stream-item__category'>{category}</span>
           </div>
-        )}
-        <h3 className='kb-card__title--grid'>{paper.title}</h3>
-        <div className='kb-card__meta-row'>
-          {paper.tags.slice(0, 2).map((tag, i) => (
-            <React.Fragment key={tag}>
-              {i > 0 && <span className='kb-meta-dot'>·</span>}
-              <span className='kb-meta'>{tag}</span>
-            </React.Fragment>
-          ))}
-          {paper.published && (
-            <>
-              <span className='kb-meta-dot'>·</span>
-              <span className='kb-meta kb-meta--accent'>Published</span>
-            </>
-          )}
         </div>
+      </div>
+      <div className='kb-stream-item__right'>
+        <div className='kb-stream-item__status'>
+          <span className='kb-stream-item__status-dot' />
+          <span className='kb-stream-item__status-text'>Published</span>
+        </div>
+        <span className='kb-stream-item__more' aria-hidden='true'>···</span>
       </div>
     </Link>
   )
 }
 
-function ActivityRow({ paper }: { paper: PaperCard }) {
+function CTASection() {
   return (
-    <Link href={paper.url} className='kb-row'>
-      <div className='kb-row__icon'>
-        <svg
-          width='18'
-          height='18'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='currentColor'
-          strokeWidth={1.5}
-        >
-          <path d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
-        </svg>
-      </div>
-      <div className='kb-row__body'>
-        <h4 className='kb-row__title'>{paper.title}</h4>
-        <div className='kb-row__meta'>
-          {paper.tags.slice(0, 2).map((tag, i) => (
-            <React.Fragment key={tag}>
-              {i > 0 && <span>·</span>}
-              <span>{tag}</span>
-            </React.Fragment>
-          ))}
+    <section className='kb-cta'>
+      <div className='kb-cta__inner'>
+        <div className='kb-cta__circles' aria-hidden='true'>
+          <div className='kb-cta__circle kb-cta__circle--lg' />
+          <div className='kb-cta__circle kb-cta__circle--md' />
+          <div className='kb-cta__circle kb-cta__circle--sm' />
+        </div>
+        <div className='kb-cta__content'>
+          <div className='kb-cta__icon-box'><IconGraph /></div>
+          <h2 className='kb-cta__title'>Explore the Portfolio</h2>
+          <p className='kb-cta__desc'>
+            Discover the architect behind these insights — technical projects,
+            career design frameworks, and strategic intelligence at sakane.dev.
+          </p>
+          <a
+            href='https://www.sakane.dev/'
+            className='kb-cta__btn'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Visit Portfolio <IconArrow />
+          </a>
         </div>
       </div>
-      <div className='kb-row__end'>
-        {paper.published ? (
-          <span className='kb-status kb-status--pub'>Published</span>
-        ) : (
-          <span className='kb-status kb-status--draft'>Draft</span>
-        )}
-      </div>
-      <svg
-        className='kb-row__chevron'
-        width='16'
-        height='16'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        strokeWidth={2}
-      >
-        <path d='M9 18l6-6-6-6' />
-      </svg>
-    </Link>
+    </section>
   )
 }
 
@@ -434,8 +648,8 @@ export function KBLandingPage({
   pageId: string
 }) {
   const [activeTag, setActiveTag] = React.useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = React.useState('')
 
-  // サーバーとクライアントで完全に同一の値にする（Hydration Error 防止）
   const currentYear = React.useMemo(() => new Date().getFullYear(), [])
 
   const papers = React.useMemo(
@@ -445,7 +659,6 @@ export function KBLandingPage({
 
   const allTags = React.useMemo(() => {
     const tagSet = new Set<string>()
-    // published 論文のみからタグを集計（"0 research domains" バグ対策）
     for (const paper of papers) {
       if (!paper.published) continue
       for (const tag of paper.tags) tagSet.add(tag)
@@ -454,16 +667,31 @@ export function KBLandingPage({
   }, [papers])
 
   const filtered = React.useMemo(() => {
-    if (!activeTag) return papers
-    return papers.filter((p) => p.tags.includes(activeTag))
-  }, [papers, activeTag])
+    let result = papers
+    if (activeTag) {
+      result = result.filter((p) => p.tags.includes(activeTag))
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase()
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.tags.some((t) => t.toLowerCase().includes(q))
+      )
+    }
+    return result
+  }, [papers, activeTag, searchQuery])
 
-  const featured = filtered.find((p) => p.published) || filtered[0]
-  const rest = filtered.filter((p) => p !== featured)
-  const gridCards = rest.slice(0, 5)
-  const listCards = rest.slice(5)
+  const featured = filtered[0]
+  const mediumCard = filtered[1]
+  const smallCards = filtered.slice(2, 4)
+  const streamCards = filtered
 
   const publishedCount = papers.filter((p) => p.published).length
+
+  const handleSearch = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+  }, [])
 
   return (
     <>
@@ -476,121 +704,218 @@ export function KBLandingPage({
       />
 
       <div className='kb-landing'>
-        {/* Top Bar */}
-        <header className='kb-topbar'>
-          <div className='kb-topbar__inner'>
-            <div className='kb-topbar__brand'>
-              <span className='kb-topbar__logo'>The Archive</span>
-              <span className='kb-topbar__label'>Curated Intelligence</span>
-            </div>
-            <nav className='kb-topbar__nav'>
-              <a
-                href='https://www.sakane.dev/'
-                className='kb-topbar__link'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Portfolio
-              </a>
-              {config.linkedin && (
-                <a
-                  href={`https://linkedin.com/in/${config.linkedin}`}
-                  className='kb-topbar__link'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  LinkedIn
+        <SidebarNav
+          allTags={allTags}
+          activeTag={activeTag}
+          onTagSelect={setActiveTag}
+          publishedCount={publishedCount}
+          totalCount={papers.length}
+        />
+
+        <div className='kb-layout'>
+          {/* Top Bar */}
+          <header className='kb-topbar'>
+            <div className='kb-topbar__inner'>
+              <div className='kb-topbar__nav-links'>
+                <a className='kb-topbar__nav-link kb-topbar__nav-link--active' href='#'>
+                  Explore
                 </a>
-              )}
-              {config.github && (
-                <a
-                  href={`https://github.com/${config.github}`}
-                  className='kb-topbar__link'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  GitHub
+                <a className='kb-topbar__nav-link' href='#'>
+                  Research
                 </a>
-              )}
-            </nav>
-          </div>
-        </header>
-
-        <main className='kb-main'>
-          {/* Hero */}
-          <section className='kb-hero'>
-            <h1 className='kb-hero__title'>Collections</h1>
-            <p className='kb-hero__sub'>
-              構造知性の軌跡 — A curated mapping of technical intelligence,
-              architectural frameworks, and strategic insights across{' '}
-              {papers.length} documents and {allTags.length} research domains.
-            </p>
-            <div className='kb-filters'>
-              <button
-                className={`kb-chip ${activeTag === null ? 'kb-chip--active' : ''}`}
-                onClick={() => setActiveTag(null)}
-              >
-                All Intelligence
-              </button>
-              {allTags.map((tag) => (
-                <button
-                  key={tag}
-                  className={`kb-chip ${activeTag === tag ? 'kb-chip--active' : ''}`}
-                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </section>
-
-          {/* Bento Grid */}
-          {filtered.length > 0 && (
-            <section className='kb-bento'>
-              {featured && <FeaturedCard paper={featured} />}
-              {gridCards.map((paper, i) => (
-                <GridCard
-                  key={paper.id}
-                  paper={paper}
-                  variant={i % 3 === 0 ? 'image' : 'solid'}
-                />
-              ))}
-            </section>
-          )}
-
-          {/* Activity List */}
-          {listCards.length > 0 && (
-            <section className='kb-activity'>
-              <div className='kb-activity__head'>
-                <h3 className='kb-activity__title'>More Intelligence</h3>
-                <p className='kb-activity__sub'>
-                  {listCards.length} additional documents
-                </p>
+                <a className='kb-topbar__nav-link' href='#'>
+                  Archive
+                </a>
               </div>
-              <div className='kb-activity__list'>
-                {listCards.map((paper) => (
-                  <ActivityRow key={paper.id} paper={paper} />
+              <div className='kb-topbar__actions'>
+                <div className='kb-topbar__search'>
+                  <span className='kb-topbar__search-icon'>
+                    <IconSearch />
+                  </span>
+                  <input
+                    type='text'
+                    className='kb-topbar__search-input'
+                    placeholder='Search archive... (⌘K)'
+                    value={searchQuery}
+                    onChange={handleSearch}
+                  />
+                </div>
+                <a
+                  href='https://www.sakane.dev/'
+                  className='kb-topbar__btn'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Portfolio
+                </a>
+              </div>
+            </div>
+          </header>
+
+          <main className='kb-main'>
+            {/* Hero */}
+            <section className='kb-hero'>
+              <span className='kb-hero__eyebrow'>Intelligence Repository</span>
+              <h1 className='kb-hero__title'>
+                Curating the{' '}
+                <span className='kb-hero__title-accent'>Intelligence</span>
+                <br />
+                of Tomorrow
+              </h1>
+              <p className='kb-hero__sub'>
+                A highly-refined repository of architectural insights, career
+                strategy, and computational logic —{' '}
+                {papers.length} documents across {allTags.length} research domains.
+              </p>
+              <div className='kb-hero__search'>
+                <div className='kb-hero__search-wrap'>
+                  <div className='kb-hero__search-glow' />
+                  <div className='kb-hero__search-inner'>
+                    <span className='kb-hero__search-icon'>
+                      <IconSearch />
+                    </span>
+                    <input
+                      type='text'
+                      className='kb-hero__search-input'
+                      placeholder='Jump to a specific report, research, or category...'
+                      value={searchQuery}
+                      onChange={handleSearch}
+                    />
+                    <kbd className='kb-hero__search-kbd'>⌘K</kbd>
+                  </div>
+                </div>
+              </div>
+              <div className='kb-filters'>
+                <button
+                  className={`kb-chip ${activeTag === null ? 'kb-chip--active' : ''}`}
+                  onClick={() => setActiveTag(null)}
+                >
+                  All Intelligence
+                </button>
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    className={`kb-chip ${activeTag === tag ? 'kb-chip--active' : ''}`}
+                    onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                  >
+                    {tag}
+                  </button>
                 ))}
               </div>
             </section>
-          )}
 
-          {filtered.length === 0 && (
-            <div className='kb-empty'>
-              <p>No documents found for this filter.</p>
+            {/* Bento Grid */}
+            {filtered.length > 0 ? (
+              <>
+                {featured && (
+                  <section className='kb-bento-section'>
+                    <div className='kb-bento-grid'>
+                      <BentoLargeCard paper={featured} />
+                      {mediumCard && <BentoMediumCard paper={mediumCard} />}
+                      {smallCards[0] && <BentoSmallCard paper={smallCards[0]} />}
+                      {smallCards[1] && <BentoSmallCard paper={smallCards[1]} alt />}
+                    </div>
+                  </section>
+                )}
+
+                {/* Stream */}
+                {filtered.length > 0 && (
+                  <section className='kb-stream'>
+                    <div className='kb-stream__head'>
+                      <div>
+                        <span className='kb-stream__eyebrow'>The Stream</span>
+                        <h2 className='kb-stream__title'>Latest Insights</h2>
+                      </div>
+                      <a href='#' className='kb-stream__view-archive'>
+                        View Archive <IconArrow />
+                      </a>
+                    </div>
+                    <div className='kb-stream__list'>
+                      {streamCards.map((paper, i) => (
+                        <StreamItem key={paper.id} paper={paper} index={i} />
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </>
+            ) : (
+              <div className='kb-empty'>
+                <p>No documents found for this filter.</p>
+              </div>
+            )}
+
+            {/* CTA */}
+            <CTASection />
+          </main>
+
+          {/* Footer */}
+          <footer className='kb-footer'>
+            <div className='kb-footer__inner'>
+              <div className='kb-footer__brand'>
+                <span className='kb-footer__logo'>The Archive</span>
+                <p className='kb-footer__copy' suppressHydrationWarning>
+                  © {currentYear} {config.author}. Curated Intelligence.
+                </p>
+              </div>
+              <div className='kb-footer__links'>
+                <a
+                  href='https://www.sakane.dev/'
+                  className='kb-footer__link'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Portfolio
+                </a>
+                {config.linkedin && (
+                  <a
+                    href={`https://linkedin.com/in/${config.linkedin}`}
+                    className='kb-footer__link'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    LinkedIn
+                  </a>
+                )}
+                {config.github && (
+                  <a
+                    href={`https://github.com/${config.github}`}
+                    className='kb-footer__link kb-footer__link--accent'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    GitHub
+                  </a>
+                )}
+              </div>
+              <div className='kb-footer__socials'>
+                <a
+                  href='https://www.sakane.dev/'
+                  className='kb-footer__social-btn'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='Portfolio'
+                >
+                  <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={1.5}>
+                    <path d='M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9' />
+                  </svg>
+                </a>
+                {config.github && (
+                  <a
+                    href={`https://github.com/${config.github}`}
+                    className='kb-footer__social-btn'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label='GitHub'
+                  >
+                    <svg width='16' height='16' viewBox='0 0 24 24' fill='currentColor'>
+                      <path d='M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z' />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
-          )}
-        </main>
-
-        <footer className='kb-footer'>
-          <span suppressHydrationWarning>
-            © {currentYear} {config.author}
-          </span>
-          <span className='kb-footer__dot'>·</span>
-          <span>{publishedCount} published</span>
-          <span className='kb-footer__dot'>·</span>
-          <span>{papers.length} total</span>
-        </footer>
+          </footer>
+        </div>
       </div>
     </>
   )
