@@ -41,6 +41,8 @@ yarn-error.log*
 # local dev / prototypes
 .claude/
 google-ai-studio/
+stitch/
+kb-landing-fix-prompts.md
 components/home.html
 components/SKILL.md
 home.png
