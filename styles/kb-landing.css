@@ -368,9 +368,9 @@
    ========================================================================== */
 
 .kb-hero {
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 2.5rem 1.3rem 4rem;
+  padding: 2.5rem 2.5rem 4rem;
   text-align: center;
 }
 
@@ -540,9 +540,9 @@
    ========================================================================== */
 
 .kb-bento-section {
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1.3rem 4rem;
+  padding: 0 2.5rem 4rem;
 }
 
 .kb-bento-grid {
@@ -799,9 +799,9 @@
    ========================================================================== */
 
 .kb-stream {
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1.3rem 4rem;
+  padding: 0 2.5rem 4rem;
 }
 
 .kb-stream__head {
@@ -1006,9 +1006,9 @@
    ========================================================================== */
 
 .kb-cta {
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1.3rem 5rem;
+  padding: 0 2.5rem 5rem;
 }
 
 .kb-cta__inner {
@@ -1146,7 +1146,7 @@
 }
 
 .kb-footer__inner {
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1268,7 +1268,7 @@
   padding: 4rem 2rem;
   color: var(--md-outline);
   font-size: 0.875rem;
-  max-width: 100rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 

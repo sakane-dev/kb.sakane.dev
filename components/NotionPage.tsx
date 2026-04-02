@@ -29,7 +29,6 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { Footer } from './Footer'
-import { GitHubShareButton } from './GitHubShareButton'
 import { KBLandingPage } from './KBLandingPage'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
@@ -268,7 +267,6 @@ export function NotionPage({
           recordMap={recordMap}
           pageId={pageId!}
         />
-        <GitHubShareButton />
       </>
     )
   }
@@ -346,7 +344,6 @@ export function NotionPage({
         footer={footer}
       />
 
-      <GitHubShareButton />
     </>
   )
 }
