@@ -6,6 +6,7 @@ import * as Fathom from 'fathom-client'
 import { posthog } from 'posthog-js'
 
 import { bootstrap } from '@/lib/bootstrap-client'
+import { AppLayout } from '@/components/AppLayout'
 import {
   fathomConfig,
   fathomId,
@@ -13,7 +14,6 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
-import { AppLayout } from '@/components/AppLayout'
 
 // -----------------------------------------------------------------------------
 // Global CSS Imports
@@ -68,6 +68,8 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
+  const isLandingPage = router.pathname === '/'
+
   return (
     <>
       <Script
@@ -89,7 +91,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
 
-      <AppLayout>
+      <AppLayout disabled={isLandingPage}>
         <Component {...pageProps} />
       </AppLayout>
     </>

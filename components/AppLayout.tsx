@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
+export function AppLayout({ children, disabled = false }: { children: React.ReactNode; disabled?: boolean }) {
+  if (disabled) return <>{children}</>
   return (
     <div className="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex dark">
       {/* サイドバー：デスクトップ時のみ表示 */}
