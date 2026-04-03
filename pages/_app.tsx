@@ -1,20 +1,3 @@
-import * as React from 'react'
-import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-import Script from 'next/script'
-import * as Fathom from 'fathom-client'
-import { posthog } from 'posthog-js'
-
-import { bootstrap } from '@/lib/bootstrap-client'
-import { AppLayout } from '@/components/AppLayout'
-import {
-  fathomConfig,
-  fathomId,
-  isServer,
-  posthogConfig,
-  posthogId
-} from '@/lib/config'
-
 // -----------------------------------------------------------------------------
 // Global CSS Imports
 // -----------------------------------------------------------------------------
@@ -25,6 +8,23 @@ import 'styles/global.css'
 import 'styles/notion.css'
 import 'styles/prism-theme.css'
 import 'styles/kb-landing.css'
+
+import type { AppProps } from 'next/app'
+import * as Fathom from 'fathom-client'
+import { useRouter } from 'next/router'
+import Script from 'next/script'
+import { posthog } from 'posthog-js'
+import * as React from 'react'
+
+import { AppLayout } from '@/components/AppLayout'
+import { bootstrap } from '@/lib/bootstrap-client'
+import {
+  fathomConfig,
+  fathomId,
+  isServer,
+  posthogConfig,
+  posthogId
+} from '@/lib/config'
 
 // GA4 Measurement ID
 const GA_MEASUREMENT_ID = 'G-ZEGF57R3HK'
