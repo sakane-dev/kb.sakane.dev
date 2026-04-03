@@ -39,8 +39,8 @@ export default function App({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     function onRouteChangeComplete(url: string) {
       if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('config', GA_MEASUREMENT_ID, {
-          page_path: url,
+        ;(window as any).gtag('config', GA_MEASUREMENT_ID, {
+          page_path: url
         })
       }
 
@@ -73,12 +73,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script
-        strategy="afterInteractive"
+        strategy='afterInteractive'
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
       <Script
-        id="google-analytics"
-        strategy="afterInteractive"
+        id='google-analytics'
+        strategy='afterInteractive'
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -87,7 +87,7 @@ export default function App({ Component, pageProps }: AppProps) {
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
             });
-          `,
+          `
         }}
       />
 

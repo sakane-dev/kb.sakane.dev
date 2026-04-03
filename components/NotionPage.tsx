@@ -262,11 +262,7 @@ export function NotionPage({
     return (
       <>
         {isDarkMode && <BodyClassName className='dark-mode' />}
-        <KBLandingPage
-          site={site}
-          recordMap={recordMap}
-          pageId={pageId!}
-        />
+        <KBLandingPage site={site} recordMap={recordMap} pageId={pageId!} />
       </>
     )
   }
@@ -343,7 +339,6 @@ export function NotionPage({
         pageAside={pageAside}
         footer={footer}
       />
-
     </>
   )
 }

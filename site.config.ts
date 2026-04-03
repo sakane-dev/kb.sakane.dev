@@ -16,5 +16,5 @@ export default siteConfig({
   linkedin: 'yasuyukis',
 
   // プレビュー画像機能
-  isPreviewImageSupportEnabled: true,
+  isPreviewImageSupportEnabled: true
 })
