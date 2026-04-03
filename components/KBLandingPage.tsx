@@ -295,22 +295,6 @@ function extractPapersFromRecordMap(
 // Icons (SVG inline)
 // ---------------------------------------------------------------------------
 
-function IconHub() {
-  return (
-    <svg
-      width='36'
-      height='36'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth={1.2}
-    >
-      <circle cx='12' cy='12' r='3' />
-      <path d='M12 3v3m0 12v3M3 12h3m12 0h3M6.34 6.34l2.12 2.12m7.08 7.08 2.12 2.12M17.66 6.34l-2.12 2.12M8.46 15.54l-2.12 2.12' />
-    </svg>
-  )
-}
-
 function IconTrend() {
   return (
     <svg
@@ -664,14 +648,18 @@ function SidebarNav({
 }
 
 function BentoLargeCard({ paper }: { paper: PaperCard }) {
+  const firstChar = paper.title.charAt(0)
+  const category = paper.tags[0] ?? 'Research'
+
   return (
     <Link href={paper.url} className='kb-bento-large'>
       <div className='kb-bento-large__bg' />
       <div className='kb-bento-large__glow' />
+      <span className='kb-bento-large__watermark' aria-hidden='true'>
+        {firstChar}
+      </span>
       <div className='kb-bento-large__content'>
-        <span className='kb-bento-large__icon'>
-          <IconHub />
-        </span>
+        <span className='kb-bento-large__eyebrow'>{category}</span>
         <h3 className='kb-bento-large__title'>{paper.title}</h3>
         <div className='kb-bento-large__tags'>
           {paper.tags.map((tag) => (
@@ -685,9 +673,13 @@ function BentoLargeCard({ paper }: { paper: PaperCard }) {
 
 function BentoMediumCard({ paper }: { paper: PaperCard }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+  const firstChar = paper.title.charAt(0)
 
   return (
     <Link href={paper.url} className='kb-bento-medium'>
+      <span className='kb-bento-medium__watermark' aria-hidden='true'>
+        {firstChar}
+      </span>
       <div className='kb-bento-medium__body'>
         <span className='kb-bento-medium__icon'>
           <IconTrend />
@@ -695,21 +687,22 @@ function BentoMediumCard({ paper }: { paper: PaperCard }) {
         <h3 className='kb-bento-medium__title'>{paper.title}</h3>
         <p className='kb-bento-medium__meta'>{dateText}</p>
       </div>
-      <div className='kb-bento-medium__decor'>
-        <IconBook />
-      </div>
     </Link>
   )
 }
 
 function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
+  const firstChar = paper.title.charAt(0)
 
   return (
     <Link
       href={paper.url}
       className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}
     >
+      <span className='kb-bento-small__watermark' aria-hidden='true'>
+        {firstChar}
+      </span>
       <span className='kb-bento-small__icon'>
         {alt ? <IconBook /> : <IconFlask />}
       </span>

@@ -523,7 +523,7 @@
   overflow: hidden;
   border-radius: 1rem;
   background: var(--md-surface-container-low);
-  border: 1px solid rgba(70, 69, 84, 0.15);
+  border: 1px solid rgba(145, 143, 160, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -546,14 +546,12 @@
   border-color: rgba(194, 193, 255, 0.3);
 }
 
-/* dot-grid abstract bg */
 .kb-bento-large__bg {
   position: absolute;
   inset: 0;
-  opacity: 0.15;
+  opacity: 0.2;
   transition: transform 0.7s ease;
-  background-image: radial-gradient(circle, rgba(194, 193, 255, 0.7) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: linear-gradient(135deg, rgba(194, 193, 255, 0.2) 0%, transparent 40%, rgba(149, 65, 228, 0.1) 100%);
 }
 
 .kb-bento-large:hover .kb-bento-large__bg {
@@ -574,9 +572,28 @@
   z-index: 1;
 }
 
-.kb-bento-large__icon {
+.kb-bento-large__watermark {
+  position: absolute;
+  right: -0.5rem;
+  bottom: -1.5rem;
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-style: italic;
+  font-size: clamp(10rem, 20vw, 16rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.kb-bento-large__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   color: var(--md-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   display: block;
 }
 
@@ -604,7 +621,7 @@
   overflow: hidden;
   border-radius: 1rem;
   background: var(--md-surface-container-high);
-  border: 1px solid rgba(70, 69, 84, 0.15);
+  border: 1px solid rgba(145, 143, 160, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -633,8 +650,6 @@
   z-index: 1;
   flex: 1;
   min-width: 0;
-  padding-right: 1.5rem;
-  max-width: 60%;
 }
 
 .kb-bento-medium__icon {
@@ -662,23 +677,19 @@
   line-height: 1.5;
 }
 
-.kb-bento-medium__decor {
-  flex-shrink: 0;
-  width: 5.5rem;
-  height: 5.5rem;
-  border-radius: 50%;
-  border: 4px solid var(--md-surface-container-lowest);
-  background: linear-gradient(135deg, rgba(221, 183, 255, 0.2), rgba(94, 92, 230, 0.15));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--md-tertiary);
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.kb-bento-medium:hover .kb-bento-medium__decor {
-  opacity: 1;
+.kb-bento-medium__watermark {
+  position: absolute;
+  right: -0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-style: italic;
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 /* --- Small Card (1 col × 1 row) --- */
@@ -688,7 +699,7 @@
   overflow: hidden;
   border-radius: 1rem;
   background: var(--md-surface-container-lowest);
-  border: 1px solid rgba(70, 69, 84, 0.15);
+  border: 1px solid rgba(145, 143, 160, 0.15);
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
@@ -713,6 +724,20 @@
 
 .kb-bento-small--alt {
   border-left: 2px solid rgba(194, 193, 255, 0.3);
+}
+
+.kb-bento-small__watermark {
+  position: absolute;
+  right: -0.25rem;
+  bottom: -0.75rem;
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-style: italic;
+  font-size: clamp(5rem, 10vw, 8rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .kb-bento-small__icon {
