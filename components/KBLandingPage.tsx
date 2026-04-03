@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { type Block,type ExtendedRecordMap } from 'notion-types'
+import { type Block, type ExtendedRecordMap } from 'notion-types'
 import {
   getBlockTitle,
   getDateValue,
@@ -450,7 +450,6 @@ function IconTag() {
     </svg>
   )
 }
-
 
 function IconLibrary() {
   return (
