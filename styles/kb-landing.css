@@ -524,13 +524,18 @@
   border-radius: 1rem;
   background: var(--md-surface-container-low);
   border: 1px solid rgba(145, 143, 160, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(94, 92, 230, 0.08);
+  backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
   min-height: 300px;
 }
 
@@ -544,13 +549,17 @@
 
 .kb-bento-large:hover {
   border-color: rgba(194, 193, 255, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 0 60px rgba(94, 92, 230, 0.15);
 }
 
 .kb-bento-large__texture {
   position: absolute;
   inset: 0;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
+  opacity: 0.35;
+  mix-blend-mode: screen;
   transition: transform 0.7s ease;
   background:
     radial-gradient(ellipse at 25% 20%, rgba(194, 193, 255, 0.6) 0%, transparent 50%),
@@ -583,7 +592,7 @@
   font-style: italic;
   font-size: clamp(10rem, 20vw, 16rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.07);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -625,13 +634,17 @@
   border-radius: 1rem;
   background: var(--md-surface-container-high);
   border: 1px solid rgba(145, 143, 160, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 30px rgba(149, 65, 228, 0.06);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s, background 0.3s;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
   min-height: 200px;
 }
 
@@ -646,6 +659,9 @@
 .kb-bento-medium:hover {
   border-color: rgba(221, 183, 255, 0.3);
   background: var(--md-surface-container-highest);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 50px rgba(149, 65, 228, 0.12);
 }
 
 .kb-bento-medium__body {
@@ -703,7 +719,7 @@
   font-style: italic;
   font-size: clamp(6rem, 12vw, 10rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.07);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -717,10 +733,14 @@
   border-radius: 1rem;
   background: var(--md-surface-container-lowest);
   border: 1px solid rgba(145, 143, 160, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 20px rgba(185, 200, 222, 0.05);
+  backdrop-filter: blur(2px);
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -737,6 +757,9 @@
 .kb-bento-small:hover {
   background: var(--md-surface-container-low);
   border-color: rgba(185, 200, 222, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 35px rgba(185, 200, 222, 0.1);
 }
 
 .kb-bento-small--alt {
@@ -782,7 +805,7 @@
   font-style: italic;
   font-size: clamp(5rem, 10vw, 8rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.07);
   pointer-events: none;
   user-select: none;
   z-index: 0;
