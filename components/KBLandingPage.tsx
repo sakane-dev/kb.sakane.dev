@@ -685,7 +685,7 @@ export function KBLandingPage({
   const featured = filtered[0]
   const mediumCard = filtered[1]
   const smallCards = filtered.slice(2, 4)
-  const streamCards = filtered
+  const streamCards = filtered.slice(4)
 
   const publishedCount = papers.filter((p) => p.published).length
 
@@ -728,18 +728,6 @@ export function KBLandingPage({
                 </a>
               </div>
               <div className='kb-topbar__actions'>
-                <div className='kb-topbar__search'>
-                  <span className='kb-topbar__search-icon'>
-                    <IconSearch />
-                  </span>
-                  <input
-                    type='text'
-                    className='kb-topbar__search-input'
-                    placeholder='Search archive... (⌘K)'
-                    value={searchQuery}
-                    onChange={handleSearch}
-                  />
-                </div>
                 <a
                   href='https://www.sakane.dev/'
                   className='kb-topbar__btn'
@@ -819,7 +807,7 @@ export function KBLandingPage({
                 )}
 
                 {/* Stream */}
-                {filtered.length > 0 && (
+                {streamCards.length > 0 && (
                   <section className='kb-stream'>
                     <div className='kb-stream__head'>
                       <div>
