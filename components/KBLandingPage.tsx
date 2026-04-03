@@ -1,12 +1,12 @@
-import * as React from 'react'
 import Link from 'next/link'
-import { type ExtendedRecordMap, type Block } from 'notion-types'
+import { type Block,type ExtendedRecordMap } from 'notion-types'
 import {
   getBlockTitle,
   getDateValue,
   getTextContent,
   parsePageId
 } from 'notion-utils'
+import * as React from 'react'
 
 import type * as types from '@/lib/types'
 import * as config from '@/lib/config'
@@ -121,8 +121,8 @@ function formatSafeDate(dateStr: string | null): string {
     const parts = dateStr.split('-')
     if (parts.length !== 3) return dateStr
     const year = parts[0] ?? ''
-    const month = parseInt(parts[1] ?? '1', 10)
-    const day = parseInt(parts[2] ?? '1', 10)
+    const month = Number.parseInt(parts[1] ?? '1', 10)
+    const day = Number.parseInt(parts[2] ?? '1', 10)
     const months = [
       'Jan',
       'Feb',
@@ -451,20 +451,6 @@ function IconTag() {
   )
 }
 
-function IconExternal() {
-  return (
-    <svg
-      width='14'
-      height='14'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth={1.5}
-    >
-      <path d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' />
-    </svg>
-  )
-}
 
 function IconLibrary() {
   return (
@@ -834,7 +820,7 @@ export function KBLandingPage({
       if (!paper.published) continue
       for (const tag of paper.tags) tagSet.add(tag)
     }
-    return Array.from(tagSet).sort()
+    return Array.from(tagSet).toSorted()
   }, [papers])
 
   const filtered = React.useMemo(() => {
