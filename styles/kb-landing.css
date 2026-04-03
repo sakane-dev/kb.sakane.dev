@@ -651,11 +651,8 @@
   color: var(--md-on-surface);
   margin: 0 0 0.5rem;
   line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  word-break: break-all;
+  display: block;
+  word-break: auto-phrase;
   overflow-wrap: anywhere;
 }
 
@@ -736,11 +733,8 @@
   color: var(--md-on-surface);
   margin: 0 0 0.5rem;
   line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  word-break: break-all;
+  display: block;
+  word-break: auto-phrase;
   overflow-wrap: anywhere;
 }
 
