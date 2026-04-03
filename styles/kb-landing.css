@@ -546,24 +546,27 @@
   border-color: rgba(194, 193, 255, 0.3);
 }
 
-.kb-bento-large__bg {
+.kb-bento-large__texture {
   position: absolute;
   inset: 0;
-  opacity: 0.2;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
   transition: transform 0.7s ease;
-  background: linear-gradient(135deg, rgba(194, 193, 255, 0.2) 0%, transparent 40%, rgba(149, 65, 228, 0.1) 100%);
+  background:
+    radial-gradient(ellipse at 25% 20%, rgba(194, 193, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 70%, rgba(149, 65, 228, 0.4) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 40%, rgba(94, 92, 230, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 80%, rgba(194, 193, 255, 0.2) 0%, transparent 40%);
 }
 
-.kb-bento-large:hover .kb-bento-large__bg {
-  transform: scale(1.1);
+.kb-bento-large:hover .kb-bento-large__texture {
+  transform: scale(1.08);
 }
 
-.kb-bento-large__glow {
+.kb-bento-large__overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 30%, rgba(94, 92, 230, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 70%, rgba(149, 65, 228, 0.15) 0%, transparent 50%);
+  background: linear-gradient(to top, var(--md-background) 0%, rgba(18, 19, 21, 0.4) 50%, transparent 100%);
   pointer-events: none;
 }
 
@@ -580,7 +583,7 @@
   font-style: italic;
   font-size: clamp(10rem, 20vw, 16rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.04);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -677,16 +680,30 @@
   line-height: 1.5;
 }
 
+.kb-bento-medium__texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(221, 183, 255, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(149, 65, 228, 0.3) 0%, transparent 45%);
+  transition: transform 0.7s ease;
+}
+
+.kb-bento-medium:hover .kb-bento-medium__texture {
+  transform: scale(1.06);
+}
+
 .kb-bento-medium__watermark {
   position: absolute;
-  right: -0.25rem;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
   font-family: 'Newsreader', 'Georgia', serif;
   font-style: italic;
   font-size: clamp(6rem, 12vw, 10rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.04);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -723,7 +740,38 @@
 }
 
 .kb-bento-small--alt {
-  border-left: 2px solid rgba(194, 193, 255, 0.3);
+  border-left: 2px solid rgba(255, 180, 171, 0.3);
+}
+
+.kb-bento-small--alt:hover {
+  border-color: rgba(255, 180, 171, 0.35);
+}
+
+.kb-bento-small__graph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+  transition: opacity 0.3s;
+}
+
+.kb-bento-small:hover .kb-bento-small__graph {
+  opacity: 0.2;
+}
+
+.kb-bento-small__texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background:
+    radial-gradient(ellipse at 60% 30%, rgba(255, 180, 171, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(255, 180, 171, 0.25) 0%, transparent 45%);
+  transition: transform 0.7s ease;
+}
+
+.kb-bento-small--alt:hover .kb-bento-small__texture {
+  transform: scale(1.06);
 }
 
 .kb-bento-small__watermark {
@@ -734,7 +782,7 @@
   font-style: italic;
   font-size: clamp(5rem, 10vw, 8rem);
   line-height: 1;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.04);
   pointer-events: none;
   user-select: none;
   z-index: 0;

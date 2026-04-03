@@ -648,15 +648,15 @@ function SidebarNav({
 }
 
 function BentoLargeCard({ paper }: { paper: PaperCard }) {
-  const firstChar = paper.title.charAt(0)
+  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
   const category = paper.tags[0] ?? 'Research'
 
   return (
     <Link href={paper.url} className='kb-bento-large'>
-      <div className='kb-bento-large__bg' />
-      <div className='kb-bento-large__glow' />
+      <div className='kb-bento-large__texture' aria-hidden='true' />
+      <div className='kb-bento-large__overlay' aria-hidden='true' />
       <span className='kb-bento-large__watermark' aria-hidden='true'>
-        {firstChar}
+        {watermarkChar}
       </span>
       <div className='kb-bento-large__content'>
         <span className='kb-bento-large__eyebrow'>{category}</span>
@@ -673,12 +673,13 @@ function BentoLargeCard({ paper }: { paper: PaperCard }) {
 
 function BentoMediumCard({ paper }: { paper: PaperCard }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
-  const firstChar = paper.title.charAt(0)
+  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
 
   return (
     <Link href={paper.url} className='kb-bento-medium'>
+      <div className='kb-bento-medium__texture' aria-hidden='true' />
       <span className='kb-bento-medium__watermark' aria-hidden='true'>
-        {firstChar}
+        {watermarkChar}
       </span>
       <div className='kb-bento-medium__body'>
         <span className='kb-bento-medium__icon'>
@@ -693,15 +694,87 @@ function BentoMediumCard({ paper }: { paper: PaperCard }) {
 
 function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
-  const firstChar = paper.title.charAt(0)
+  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
 
   return (
     <Link
       href={paper.url}
       className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}
     >
+      {alt ? (
+        <div className='kb-bento-small__texture' aria-hidden='true' />
+      ) : (
+        <svg
+          className='kb-bento-small__graph'
+          viewBox='0 0 100 100'
+          aria-hidden='true'
+        >
+          <circle cx='50' cy='50' r='1.5' fill='#b9c8de' />
+          <circle cx='20' cy='30' r='1' fill='#b9c8de' />
+          <circle cx='80' cy='40' r='1' fill='#b9c8de' />
+          <circle cx='30' cy='75' r='1' fill='#b9c8de' />
+          <circle cx='75' cy='20' r='0.8' fill='#b9c8de' />
+          <circle cx='65' cy='70' r='0.8' fill='#b9c8de' />
+          <line
+            x1='50'
+            y1='50'
+            x2='20'
+            y2='30'
+            stroke='#b9c8de'
+            strokeWidth='0.3'
+          />
+          <line
+            x1='50'
+            y1='50'
+            x2='80'
+            y2='40'
+            stroke='#b9c8de'
+            strokeWidth='0.3'
+          />
+          <line
+            x1='50'
+            y1='50'
+            x2='30'
+            y2='75'
+            stroke='#b9c8de'
+            strokeWidth='0.3'
+          />
+          <line
+            x1='50'
+            y1='50'
+            x2='75'
+            y2='20'
+            stroke='#b9c8de'
+            strokeWidth='0.2'
+          />
+          <line
+            x1='50'
+            y1='50'
+            x2='65'
+            y2='70'
+            stroke='#b9c8de'
+            strokeWidth='0.2'
+          />
+          <line
+            x1='20'
+            y1='30'
+            x2='75'
+            y2='20'
+            stroke='#b9c8de'
+            strokeWidth='0.15'
+          />
+          <line
+            x1='80'
+            y1='40'
+            x2='65'
+            y2='70'
+            stroke='#b9c8de'
+            strokeWidth='0.15'
+          />
+        </svg>
+      )}
       <span className='kb-bento-small__watermark' aria-hidden='true'>
-        {firstChar}
+        {watermarkChar}
       </span>
       <span className='kb-bento-small__icon'>
         {alt ? <IconBook /> : <IconFlask />}
