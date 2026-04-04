@@ -144,6 +144,19 @@ function formatSafeDate(dateStr: string | null): string {
   }
 }
 
+/**
+ * 文字列（Notion UUID等）から 0〜1 の決定論的な浮動小数点を生成する。
+ * SVGの feTurbulence baseFrequency のシード値に使用。
+ */
+function hashToFloat(str: string): number {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.codePointAt(i) ?? 0
+    hash = Math.trunc((hash << 5) - hash + char)
+  }
+  return Math.abs(hash % 1000) / 1000
+}
+
 // ---------------------------------------------------------------------------
 // Data extraction from Notion recordMap
 // ---------------------------------------------------------------------------
@@ -295,21 +308,6 @@ function extractPapersFromRecordMap(
 // Icons (SVG inline)
 // ---------------------------------------------------------------------------
 
-function IconTrend() {
-  return (
-    <svg
-      width='28'
-      height='28'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth={1.5}
-    >
-      <polyline points='23 6 13.5 15.5 8.5 10.5 1 18' />
-      <polyline points='17 6 23 6 23 12' />
-    </svg>
-  )
-}
 
 function IconFlask() {
   return (
@@ -547,6 +545,48 @@ function TagBadge({ tag }: { tag: string }) {
   )
 }
 
+/**
+ * Notion UUID をシードに、feTurbulence でユニークなノイズテクスチャを生成。
+ * color は CSS色文字列（rgba(...) or hex）。
+ */
+function DynamicTexture({
+  seed,
+  color,
+  opacity = 0.08
+}: {
+  seed: string
+  color: string
+  opacity?: number
+}) {
+  const freq = 0.3 + hashToFloat(seed) * 0.5
+  const filterId = `noise-${seed.slice(0, 8)}`
+
+  return (
+    <div className='kb-dynamic-texture' aria-hidden='true'>
+      <svg className='kb-dynamic-texture__svg' style={{ opacity }}>
+        <filter id={filterId}>
+          <feTurbulence
+            type='fractalNoise'
+            baseFrequency={freq}
+            numOctaves={3}
+            seed={Math.abs((seed.codePointAt(0) ?? 0) * 127 + (seed.codePointAt(1) ?? 0) * 31)}
+            stitchTiles='stitch'
+          />
+        </filter>
+        <rect width='100%' height='100%' filter={`url(#${filterId})`} />
+      </svg>
+      <div
+        className='kb-dynamic-texture__gradient'
+        style={{
+          background: `radial-gradient(ellipse at 30% 25%, ${color} 0%, transparent 55%),
+                       radial-gradient(ellipse at 75% 70%, ${color} 0%, transparent 50%)`
+        }}
+      />
+      <div className='kb-dynamic-texture__reflection' />
+    </div>
+  )
+}
+
 const SIDEBAR_NAV = [
   { icon: IconDashboard, label: 'DASHBOARD' },
   { icon: IconLibrary, label: 'LIBRARY' },
@@ -648,139 +688,52 @@ function SidebarNav({
 }
 
 function BentoLargeCard({ paper }: { paper: PaperCard }) {
-  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
   const category = paper.tags[0] ?? 'Research'
 
   return (
     <Link href={paper.url} className='kb-bento-large'>
-      <div className='kb-bento-large__texture' aria-hidden='true' />
+      <DynamicTexture seed={paper.id} color='rgba(194, 193, 255, 0.35)' opacity={0.1} />
       <div className='kb-bento-large__overlay' aria-hidden='true' />
-      <span className='kb-bento-large__watermark' aria-hidden='true'>
-        {watermarkChar}
-      </span>
+      <div className='kb-bento-large__glow kb-bento-large__glow--a' aria-hidden='true' />
+      <div className='kb-bento-large__glow kb-bento-large__glow--b' aria-hidden='true' />
       <div className='kb-bento-large__content'>
-        <span className='kb-bento-large__eyebrow'>{category}</span>
-        <h3 className='kb-bento-large__title'>{paper.title}</h3>
-        <div className='kb-bento-large__tags'>
-          {paper.tags.map((tag) => (
-            <TagBadge key={tag} tag={tag} />
-          ))}
+        <div className='kb-bento-large__glass'>
+          <span className='kb-bento-large__eyebrow'>{category}</span>
+          <h3 className='kb-bento-large__title'>{paper.title}</h3>
+          <div className='kb-bento-large__tags'>
+            {paper.tags.map((tag) => (
+              <TagBadge key={tag} tag={tag} />
+            ))}
+          </div>
         </div>
       </div>
     </Link>
   )
 }
 
-function BentoMediumCard({ paper }: { paper: PaperCard }) {
-  const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
-  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
-
-  return (
-    <Link href={paper.url} className='kb-bento-medium'>
-      <div className='kb-bento-medium__texture' aria-hidden='true' />
-      <span className='kb-bento-medium__watermark' aria-hidden='true'>
-        {watermarkChar}
-      </span>
-      <div className='kb-bento-medium__body'>
-        <span className='kb-bento-medium__icon'>
-          <IconTrend />
-        </span>
-        <h3 className='kb-bento-medium__title'>{paper.title}</h3>
-        <p className='kb-bento-medium__meta'>{dateText}</p>
-      </div>
-    </Link>
-  )
-}
 
 function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
-  const watermarkChar = (paper.tags[0] ?? paper.title).charAt(0)
+  const category = paper.tags[0] ?? 'Research'
+
+  const textureColor = alt
+    ? 'rgba(221, 183, 255, 0.35)'
+    : 'rgba(185, 200, 222, 0.35)'
 
   return (
-    <Link
-      href={paper.url}
-      className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}
-    >
-      {alt ? (
-        <div className='kb-bento-small__texture' aria-hidden='true' />
-      ) : (
-        <svg
-          className='kb-bento-small__graph'
-          viewBox='0 0 100 100'
-          aria-hidden='true'
-        >
-          <circle cx='50' cy='50' r='1.5' fill='#b9c8de' />
-          <circle cx='20' cy='30' r='1' fill='#b9c8de' />
-          <circle cx='80' cy='40' r='1' fill='#b9c8de' />
-          <circle cx='30' cy='75' r='1' fill='#b9c8de' />
-          <circle cx='75' cy='20' r='0.8' fill='#b9c8de' />
-          <circle cx='65' cy='70' r='0.8' fill='#b9c8de' />
-          <line
-            x1='50'
-            y1='50'
-            x2='20'
-            y2='30'
-            stroke='#b9c8de'
-            strokeWidth='0.3'
-          />
-          <line
-            x1='50'
-            y1='50'
-            x2='80'
-            y2='40'
-            stroke='#b9c8de'
-            strokeWidth='0.3'
-          />
-          <line
-            x1='50'
-            y1='50'
-            x2='30'
-            y2='75'
-            stroke='#b9c8de'
-            strokeWidth='0.3'
-          />
-          <line
-            x1='50'
-            y1='50'
-            x2='75'
-            y2='20'
-            stroke='#b9c8de'
-            strokeWidth='0.2'
-          />
-          <line
-            x1='50'
-            y1='50'
-            x2='65'
-            y2='70'
-            stroke='#b9c8de'
-            strokeWidth='0.2'
-          />
-          <line
-            x1='20'
-            y1='30'
-            x2='75'
-            y2='20'
-            stroke='#b9c8de'
-            strokeWidth='0.15'
-          />
-          <line
-            x1='80'
-            y1='40'
-            x2='65'
-            y2='70'
-            stroke='#b9c8de'
-            strokeWidth='0.15'
-          />
-        </svg>
-      )}
-      <span className='kb-bento-small__watermark' aria-hidden='true'>
-        {watermarkChar}
-      </span>
-      <span className='kb-bento-small__icon'>
-        {alt ? <IconBook /> : <IconFlask />}
-      </span>
-      <h4 className='kb-bento-small__title'>{paper.title}</h4>
-      <p className='kb-bento-small__meta'>{dateText}</p>
+    <Link href={paper.url} className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}>
+      <DynamicTexture seed={paper.id} color={textureColor} opacity={0.06} />
+      <div className='kb-bento-small__body'>
+        <div className='kb-bento-small__icon-box'>
+          <span className='kb-bento-small__icon'>
+            {alt ? <IconBook /> : <IconFlask />}
+          </span>
+        </div>
+        <div className='kb-bento-small__glass'>
+          <h4 className='kb-bento-small__title'>{paper.title}</h4>
+          <p className='kb-bento-small__meta'>{dateText} · {category}</p>
+        </div>
+      </div>
     </Link>
   )
 }
@@ -905,9 +858,8 @@ export function KBLandingPage({
   }, [papers, activeTag, searchQuery])
 
   const featured = filtered[0]
-  const mediumCard = filtered[1]
-  const smallCards = filtered.slice(2, 4)
-  const streamCards = filtered.slice(4)
+  const smallCards = filtered.slice(1, 3)
+  const streamCards = filtered.slice(3)
 
   const publishedCount = papers.filter((p) => p.published).length
 
@@ -1027,7 +979,6 @@ export function KBLandingPage({
                   <section className='kb-bento-section'>
                     <div className='kb-bento-grid'>
                       <BentoLargeCard paper={featured} />
-                      {mediumCard && <BentoMediumCard paper={mediumCard} />}
                       {smallCards[0] && (
                         <BentoSmallCard paper={smallCards[0]} />
                       )}

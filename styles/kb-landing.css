@@ -502,122 +502,158 @@
   padding: 0 2.5rem 4rem;
 }
 
+/* === Dynamic Texture (shared across all Bento cards) === */
+
+.kb-dynamic-texture {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.kb-dynamic-texture__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: overlay;
+}
+
+.kb-dynamic-texture__gradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  transition: transform 0.7s ease;
+}
+
+.kb-dynamic-texture__reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top right, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+}
+
 .kb-bento-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .kb-bento-grid {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, minmax(220px, auto));
-    min-height: 440px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(200px, auto);
   }
 }
 
-/* --- Large Card (2 cols × 2 rows) --- */
+/* === Large Card (8col × 2row) === */
 
 .kb-bento-large {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
   background: var(--md-surface-container-low);
-  border: 1px solid rgba(145, 143, 160, 0.15);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(94, 92, 230, 0.08);
-  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  min-height: 300px;
+  transition: border-color 0.3s;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 768px) {
   .kb-bento-large {
-    grid-column: span 2;
+    grid-column: span 8;
     grid-row: span 2;
-    min-height: 0;
   }
 }
 
 .kb-bento-large:hover {
-  border-color: rgba(194, 193, 255, 0.3);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-    0 0 60px rgba(94, 92, 230, 0.15);
+  border-color: rgba(194, 193, 255, 0.25);
 }
 
-.kb-bento-large__texture {
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-  mix-blend-mode: screen;
-  transition: transform 0.7s ease;
-  background:
-    radial-gradient(ellipse at 25% 20%, rgba(194, 193, 255, 0.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 70%, rgba(149, 65, 228, 0.4) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 40%, rgba(94, 92, 230, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse at 10% 80%, rgba(194, 193, 255, 0.2) 0%, transparent 40%);
-}
-
-.kb-bento-large:hover .kb-bento-large__texture {
-  transform: scale(1.08);
+.kb-bento-large:hover .kb-dynamic-texture__gradient {
+  transform: scale(1.05);
 }
 
 .kb-bento-large__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--md-background) 0%, rgba(18, 19, 21, 0.4) 50%, transparent 100%);
+  background: linear-gradient(to top right, rgba(18, 19, 21, 0.9) 0%, transparent 50%, rgba(18, 19, 21, 0.4) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.kb-bento-large__glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(25px);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  z-index: 2;
+}
+
+.kb-bento-large:hover .kb-bento-large__glow {
+  opacity: 0.8;
+}
+
+.kb-bento-large__glow--a {
+  top: 10%;
+  left: 8%;
+  background: radial-gradient(circle, rgba(194, 193, 255, 0.25) 0%, transparent 70%);
+}
+
+.kb-bento-large__glow--b {
+  bottom: 20%;
+  right: 15%;
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.2) 0%, transparent 70%);
 }
 
 .kb-bento-large__content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  padding: 2.5rem;
+  width: 100%;
 }
 
-.kb-bento-large__watermark {
-  position: absolute;
-  right: -0.5rem;
-  bottom: -1.5rem;
-  font-family: 'Newsreader', 'Georgia', serif;
-  font-style: italic;
-  font-size: clamp(10rem, 20vw, 16rem);
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.07);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
+.kb-bento-large__glass {
+  background: rgba(41, 42, 44, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--md-primary);
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  max-width: 32rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
 }
 
 .kb-bento-large__eyebrow {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(194, 193, 255, 0.15);
+  color: var(--md-primary);
   font-family: 'Inter', sans-serif;
   font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--md-primary);
-  margin-bottom: 0.75rem;
-  display: block;
+  margin-bottom: 1rem;
 }
 
 .kb-bento-large__title {
   font-family: 'Newsreader', 'Georgia', serif;
   font-style: italic;
-  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
   font-weight: 400;
-
   color: var(--md-on-surface);
   margin: 0 0 1.25rem;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .kb-bento-large__tags {
@@ -626,199 +662,83 @@
   flex-wrap: wrap;
 }
 
-/* --- Medium Card (2 cols × 1 row) --- */
-
-.kb-bento-medium {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  background: var(--md-surface-container-high);
-  border: 1px solid rgba(145, 143, 160, 0.15);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 30px rgba(149, 65, 228, 0.06);
-  backdrop-filter: blur(2px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
-  min-height: 200px;
-}
-
-@media (min-width: 768px) {
-  .kb-bento-medium {
-    grid-column: span 2;
-    grid-row: span 1;
-    min-height: 0;
-  }
-}
-
-.kb-bento-medium:hover {
-  border-color: rgba(221, 183, 255, 0.3);
-  background: var(--md-surface-container-highest);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 0 50px rgba(149, 65, 228, 0.12);
-}
-
-.kb-bento-medium__body {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  min-width: 0;
-}
-
-.kb-bento-medium__icon {
-  color: var(--md-tertiary);
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.kb-bento-medium__title {
-  font-family: 'Newsreader', 'Georgia', serif;
-  font-style: italic;
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
-  font-weight: 400;
-  color: var(--md-on-surface);
-  margin: 0 0 0.5rem;
-  line-height: 1.3;
-  display: block;
-  word-break: auto-phrase;
-  overflow-wrap: anywhere;
-}
-
-.kb-bento-medium__meta {
-  font-size: 0.8125rem;
-  color: var(--md-on-surface-variant);
-  line-height: 1.5;
-}
-
-.kb-bento-medium__texture {
-  position: absolute;
-  inset: 0;
-  opacity: 0.25;
-  background:
-    radial-gradient(ellipse at 70% 30%, rgba(221, 183, 255, 0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 80%, rgba(149, 65, 228, 0.3) 0%, transparent 45%);
-  transition: transform 0.7s ease;
-}
-
-.kb-bento-medium:hover .kb-bento-medium__texture {
-  transform: scale(1.06);
-}
-
-.kb-bento-medium__watermark {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Newsreader', 'Georgia', serif;
-  font-style: italic;
-  font-size: clamp(6rem, 12vw, 10rem);
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.07);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-/* --- Small Card (1 col × 1 row) --- */
+/* === Small Card (4col × 1row) === */
 
 .kb-bento-small {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
-  background: var(--md-surface-container-lowest);
-  border: 1px solid rgba(145, 143, 160, 0.15);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 20px rgba(185, 200, 222, 0.05);
-  backdrop-filter: blur(2px);
-  padding: 1.5rem;
+  background: var(--md-surface-container-low);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
+  transition: background 0.3s, border-color 0.3s;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 768px) {
   .kb-bento-small {
-    grid-column: span 1;
+    grid-column: span 4;
     grid-row: span 1;
-    min-height: 0;
   }
 }
 
 .kb-bento-small:hover {
-  background: var(--md-surface-container-low);
+  background: var(--md-surface-container-high);
   border-color: rgba(185, 200, 222, 0.25);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 0 35px rgba(185, 200, 222, 0.1);
 }
 
-.kb-bento-small--alt {
-  border-left: 2px solid rgba(255, 180, 171, 0.3);
-}
-
-.kb-bento-small--alt:hover {
-  border-color: rgba(255, 180, 171, 0.35);
-}
-
-.kb-bento-small__graph {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.12;
-  transition: opacity 0.3s;
-}
-
-.kb-bento-small:hover .kb-bento-small__graph {
-  opacity: 0.2;
-}
-
-.kb-bento-small__texture {
-  position: absolute;
-  inset: 0;
-  opacity: 0.2;
-  background:
-    radial-gradient(ellipse at 60% 30%, rgba(255, 180, 171, 0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 80%, rgba(255, 180, 171, 0.25) 0%, transparent 45%);
-  transition: transform 0.7s ease;
-}
-
-.kb-bento-small--alt:hover .kb-bento-small__texture {
+.kb-bento-small:hover .kb-dynamic-texture__gradient {
   transform: scale(1.06);
 }
 
-.kb-bento-small__watermark {
-  position: absolute;
-  right: -0.25rem;
-  bottom: -0.75rem;
-  font-family: 'Newsreader', 'Georgia', serif;
-  font-style: italic;
-  font-size: clamp(5rem, 10vw, 8rem);
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.07);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
+.kb-bento-small--alt:hover {
+  border-color: rgba(221, 183, 255, 0.25);
+}
+
+.kb-bento-small__body {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kb-bento-small__icon-box {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(41, 42, 44, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .kb-bento-small__icon {
   color: var(--md-secondary);
-  margin-bottom: 1rem;
-  display: block;
+}
+
+.kb-bento-small--alt .kb-bento-small__icon-box {
+  border-color: rgba(221, 183, 255, 0.2);
 }
 
 .kb-bento-small--alt .kb-bento-small__icon {
-  color: var(--md-primary);
+  color: var(--md-tertiary);
+}
+
+.kb-bento-small__glass {
+  background: rgba(41, 42, 44, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
 }
 
 .kb-bento-small__title {
@@ -827,19 +747,20 @@
   font-size: 1.125rem;
   font-weight: 400;
   color: var(--md-on-surface);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.375rem;
   line-height: 1.3;
-  display: block;
   word-break: auto-phrase;
   overflow-wrap: anywhere;
 }
 
 .kb-bento-small__meta {
-  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   color: var(--md-on-surface-variant);
-  line-height: 1.5;
-  margin-top: auto;
-  padding-top: 0.75rem;
+  opacity: 0.7;
 }
 
 /* ==========================================================================
@@ -1340,7 +1261,7 @@
   animation-delay: 0ms;
 }
 
-.kb-bento-medium {
+.kb-bento-small:nth-child(2) {
   animation: kbFadeUp 0.5s ease both;
   animation-delay: 80ms;
 }
@@ -1348,9 +1269,4 @@
 .kb-bento-small:nth-child(3) {
   animation: kbFadeUp 0.5s ease both;
   animation-delay: 160ms;
-}
-
-.kb-bento-small:nth-child(4) {
-  animation: kbFadeUp 0.5s ease both;
-  animation-delay: 240ms;
 }
