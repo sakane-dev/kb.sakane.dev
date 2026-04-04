@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Archive | Structural Neural Synchrony</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#39485a",
+                        "inverse-on-surface": "#303033",
+                        "surface-bright": "#38393b",
+                        "on-tertiary-container": "#fbefff",
+                        "on-secondary-container": "#a7b6cc",
+                        "primary-container": "#5e5ce6",
+                        "on-tertiary-fixed": "#2c0051",
+                        "tertiary": "#ddb7ff",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "surface-container-low": "#1b1c1e",
+                        "surface-container-highest": "#343537",
+                        "outline": "#918fa0",
+                        "surface": "#121315",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#9541e4",
+                        "surface-variant": "#343537",
+                        "on-primary-fixed": "#0c006b",
+                        "primary-fixed": "#e2dfff",
+                        "on-surface": "#e3e2e5",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "surface-container-lowest": "#0d0e10",
+                        "on-primary": "#1800a7",
+                        "surface-container-high": "#292a2c",
+                        "on-primary-fixed-variant": "#332dbc",
+                        "on-primary-container": "#f4f1ff",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "tertiary-fixed": "#f0dbff",
+                        "surface-tint": "#c2c1ff",
+                        "error-container": "#93000a",
+                        "secondary-container": "#39485a",
+                        "inverse-primary": "#4d4ad5",
+                        "surface-container": "#1f2022",
+                        "secondary-fixed": "#d4e4fa",
+                        "background": "#121315",
+                        "surface-dim": "#121315",
+                        "on-tertiary": "#490080",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "outline-variant": "#464554",
+                        "primary": "#c2c1ff",
+                        "on-secondary": "#233143",
+                        "on-background": "#e3e2e5",
+                        "on-error": "#690005",
+                        "secondary": "#b9c8de",
+                        "inverse-surface": "#e3e2e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Newsreader"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-drop-cap::first-letter {
+            float: left;
+            font-family: 'Newsreader', serif;
+            font-size: 4rem;
+            line-height: 3.5rem;
+            padding-right: 0.75rem;
+            font-style: italic;
+            color: #c2c1ff;
+            font-weight: 600;
+        }
+        .ghost-border {
+            border: 1px solid rgba(145, 143, 160, 0.15);
+        }
+        .equation-glow {
+            text-shadow: 0 0 15px rgba(194, 193, 255, 0.4);
+        }
+        .japanese-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#121315]/80 backdrop-blur-xl shadow-none border-b border-[#918fa0]/15 flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="font-serif italic text-[#c2c1ff] text-2xl">The Archive</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-serif text-lg tracking-tight Newsreader text-slate-400 hover:text-white transition-colors duration-300" href="#">Collections</a>
+<a class="font-serif text-lg tracking-tight Newsreader text-[#c2c1ff] border-b border-[#c2c1ff] hover:text-white transition-colors duration-300" href="#">Library</a>
+<a class="font-serif text-lg tracking-tight Newsreader text-slate-400 hover:text-white transition-colors duration-300" href="#">Indexes</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-sm">search</span>
+</div>
+<input class="bg-surface-container-high/60 backdrop-blur-lg ghost-border rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary focus:outline-none transition-all" placeholder="Explore artifacts..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-outline hover:text-primary cursor-pointer transition-colors">settings</span>
+<span class="material-symbols-outlined text-outline hover:text-primary cursor-pointer transition-colors">account_circle</span>
+</div>
+</nav>
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#1b1c1e] flex flex-col py-6 px-4 space-y-2 pt-20 hidden md:flex">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3">
+<img alt="Curator Profile" class="w-10 h-10 rounded-lg object-cover" data-alt="close-up portrait of a scholarly woman in a dark library with soft moody lighting and floating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsqlDtp2wlUfoOLPwITC2PaiZIkgvSCaSzSlgdwrccq7vuHCyPPwdo_Wa_Aj_pMNMb4Z8g9oTJBcBTthhS2owigfjwKRUaBCpmrvpin0HRidRomuQvKQ8GtnW1NX5VdPz0-ZxQeOIRKd1k3uPMpjvcn99fELahI1WUc4V6udrM7sEuymk4UiRTZrseYDmmeNArnhMJMJjSIGIMaXjn_CV_VGXP8X4DFQfvGCtxHOb32al4plCEQV70Iyhu79Mh8l_g_5_exKHvmgU"/>
+<div>
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-primary/80">Intelligence Curator</p>
+<p class="text-xs text-slate-400">Level 4 Access</p>
+</div>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 py-2.5 px-3 bg-gradient-to-r from-[#c2c1ff]/10 to-transparent border-l-2 border-[#c2c1ff] text-white transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-sans text-xs uppercase tracking-widest Inter">Research Notes</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-500 hover:text-slate-300 hover:bg-[#292a2c] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">category</span>
+<span class="font-sans text-xs uppercase tracking-widest Inter">Artifacts</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-500 hover:text-slate-300 hover:bg-[#292a2c] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-sans text-xs uppercase tracking-widest Inter">Taxonomy</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-500 hover:text-slate-300 hover:bg-[#292a2c] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">format_quote</span>
+<span class="font-sans text-xs uppercase tracking-widest Inter">Citations</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-500 hover:text-slate-300 hover:bg-[#292a2c] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span class="font-sans text-xs uppercase tracking-widest Inter">Settings</span>
+</a>
+</nav>
+<button class="mt-4 w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-2.5 rounded-lg font-sans text-xs uppercase tracking-widest font-semibold shadow-lg shadow-primary/10">
+            New Entry
+        </button>
+<div class="pt-6 mt-6 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-3 py-2 px-3 text-slate-500 hover:text-slate-300 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Inter">Support</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 text-slate-500 hover:text-slate-300 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]">code</span>
+<span class="font-sans text-[10px] uppercase tracking-widest Inter">API</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-64 pt-16 min-h-screen">
+<div class="max-w-6xl mx-auto px-8 py-12">
+<!-- Header Section -->
+<header class="mb-16 border-b border-outline-variant/10 pb-12">
+<div class="flex items-center gap-4 mb-4">
+<span class="bg-primary/10 text-primary px-3 py-0.5 rounded-full text-[10px] uppercase tracking-widest font-bold border border-primary/20">Peer Reviewed</span>
+<span class="text-outline text-[10px] uppercase tracking-widest">Document ID: ARCH-772-SYN</span>
+</div>
+<h1 class="text-6xl font-serif text-on-surface mb-6 leading-tight max-w-4xl tracking-tight">
+                    Structural Neural Synchrony: <span class="text-primary italic">Phasic Alignment in Non-Linear Cortical Networks</span>
+</h1>
+<div class="flex justify-between items-end">
+<div class="flex gap-12">
+<div>
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-outline mb-1">Author</p>
+<p class="text-lg italic">Dr. K. Sakane</p>
+</div>
+<div>
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-outline mb-1">Publication</p>
+<p class="text-lg">The Ethereal Journal</p>
+</div>
+<div>
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-outline mb-1">Date</p>
+<p class="text-lg">December 2024</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high p-2 rounded-lg ghost-border hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-lg">bookmark</span>
+</button>
+<button class="bg-surface-container-high p-2 rounded-lg ghost-border hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Multi-column Layout -->
+<div class="grid grid-cols-12 gap-12">
+<!-- Left Content: Editorial Body -->
+<div class="col-span-12 lg:col-span-8 space-y-12">
+<section>
+<p class="serif-drop-cap text-xl leading-relaxed text-on-surface-variant mb-8 first-letter:mr-3">
+                            The emergence of synchronous firing patterns across spatially disparate neural populations remains one of the most enigmatic phenomena in modern neuroscience. By investigating the structural constraints that facilitate these alignments, we can begin to map the invisible architecture of thought itself. Neural synchrony is not merely a byproduct of communication, but the medium through which the brain achieves coherent global states from localized chaos.
+                        </p>
+<p class="text-xl leading-relaxed text-on-surface-variant">
+                            神経回路の同調性は、情報の統合において不可欠な役割を果たしている。本研究では、非線形力学系理論を用いて、異なる皮質領域間での位相ロック現象を解析する。
+                        </p>
+</section>
+<!-- Equation Block with Glow -->
+<section class="relative bg-surface-container-low/40 rounded-xl p-12 ghost-border overflow-hidden group">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700"></div>
+<div class="flex flex-col items-center justify-center space-y-8 py-4">
+<p class="font-sans text-[10px] uppercase tracking-[0.2em] text-primary self-start">The Synchrony Constraint (Equation 4.1)</p>
+<div class="text-3xl md:text-4xl font-serif equation-glow text-on-surface/90 italic tracking-widest text-center">
+                                \Psi(t) = \int_{0}^{\infty} e^{-\lambda \tau} \cos(\omega \tau + \phi_0) \cdot \nabla^2 \Theta(\mathbf{r}, \tau) d\tau
+                            </div>
+<p class="text-sm text-outline font-sans text-center italic max-w-lg">
+                                Defining the phasic alignment integral over a continuous cortical manifold, where λ represents the decay constant and ω the fundamental oscillation frequency.
+                            </p>
+</div>
+</section>
+<!-- Secondary Columns -->
+<div class="grid md:grid-cols-2 gap-8 pt-8">
+<div class="space-y-4">
+<h3 class="text-2xl font-serif text-primary italic border-b border-outline-variant/10 pb-2">Manifold Topology</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                Our empirical data suggests that the geometric configuration of white matter tracts acts as a manifold constraint. When the geodesic distance between nodes α and β exceeds the threshold Γ, the probability of spontaneous synchrony drops significantly, following an inverse-square law relative to local curvature.
+                            </p>
+</div>
+<div class="space-y-4">
+<h3 class="text-2xl font-serif text-primary italic border-b border-outline-variant/10 pb-2">Dynamic Coupling</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                                Dynamic coupling coefficients (DCC) were calculated using a windowed Fourier transform. We observed that during high-fidelity cognitive tasks, the DCC values exhibit a fractal-like distribution across the temporal domain, indicating a self-organized criticality.
+                            </p>
+</div>
+</div>
+<!-- Complex Blockquote -->
+<section class="py-12 border-y border-outline-variant/15 flex gap-8">
+<div class="hidden sm:block">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+</div>
+</div>
+<blockquote class="text-3xl font-serif italic text-on-surface leading-tight">
+                            "The brain is not just a computer; it is a resonant chamber where electrical echoes coalesce into the harmony we perceive as consciousness."
+                            <footer class="mt-4 flex items-center gap-4">
+<div class="h-[1px] w-8 bg-primary"></div>
+<span class="font-sans text-[10px] uppercase tracking-[0.2em] text-outline">Observation Fragment 88-A</span>
+</footer>
+</blockquote>
+</section>
+</div>
+<!-- Right Sidebar: Metadata & Data Viz -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Metadata Card -->
+<div class="bg-surface-container-low p-6 rounded-xl ghost-border space-y-6">
+<h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-primary border-b border-outline-variant/10 pb-3">Analytical Context</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-outline">Confidence Level</span>
+<span class="text-on-surface font-mono">98.4%</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[98.4%]"></div>
+</div>
+<div class="flex justify-between items-center text-sm pt-2">
+<span class="text-outline">Data Density</span>
+<span class="text-on-surface font-mono">1.4 TB</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[72%]"></div>
+</div>
+</div>
+<div class="pt-4 space-y-3">
+<div class="flex gap-2 flex-wrap">
+<span class="text-[9px] uppercase tracking-widest bg-outline-variant/10 px-2 py-1 rounded text-outline border border-outline-variant/20">NEURODYNAMICS</span>
+<span class="text-[9px] uppercase tracking-widest bg-outline-variant/10 px-2 py-1 rounded text-outline border border-outline-variant/20">TOPOLOGY</span>
+<span class="text-[9px] uppercase tracking-widest bg-outline-variant/10 px-2 py-1 rounded text-outline border border-outline-variant/20">K-MANIFOLD</span>
+</div>
+</div>
+</div>
+<!-- Figure Preview -->
+<div class="group cursor-pointer">
+<div class="relative rounded-xl overflow-hidden mb-3 ghost-border">
+<img alt="Neural Network Visualization" class="w-full aspect-square object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" data-alt="abstract digital visualization of complex neural pathways glowing in violet and blue against a dark charcoal background with intricate connecting lines and nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNNr0JdwMeKpbqADeOrJwt12qFNn7VoZ_J9Ic34CpJCOFHs5ypruWn5pvH-TH5PNv4sxNQ9sYdBq7ngsuhsBEY7HSGkPA2FKfR5wi1OWUKADiD8-7wtBFR1YwHm3iwwapdOigPl1LmzjiG-V7VDlPhCBjK-KrMJaX7ko4P5mL91kaos0jlf4-KxwfRWGIUyVqJnHPuv1RawfVndWrwPqabANRtj7aqeFsWsasN05VExLI59-8_seI8USN2V_K7Vi_qjwoJyryOWiQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end p-4">
+<p class="font-sans text-[10px] uppercase tracking-widest text-primary">Fig 1.2 — Phasic Map</p>
+</div>
+</div>
+<p class="text-xs text-outline italic leading-relaxed px-1">
+                            Three-dimensional reconstruction of node interaction frequencies during sustained alpha-wave states.
+                        </p>
+</div>
+<!-- Japanese Text Block (Vertical Flair) -->
+<div class="bg-surface-container-lowest/50 p-6 rounded-xl ghost-border flex gap-6">
+<div class="japanese-vertical text-outline font-serif text-sm tracking-widest py-2">
+                            深層学習による解析結果
+                        </div>
+<div class="space-y-4">
+<p class="text-xs leading-relaxed text-on-surface-variant font-serif">
+                                構造的な接続性が、機能的なダイナミクスをどのように規定しているのか。我々は「構造的ハブ」が同調性のトリガーとなることを発見した。
+                            </p>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+<span class="font-sans text-[10px] uppercase tracking-widest">AI Summary</span>
+</div>
+</div>
+</div>
+<!-- Referenced Papers List -->
+<div class="space-y-4 pt-4">
+<h4 class="font-sans text-[10px] uppercase tracking-[0.2em] text-outline">Linked Citations</h4>
+<ul class="space-y-3">
+<li class="group">
+<a class="block hover:bg-surface-container-low p-3 rounded-lg transition-colors border border-transparent hover:border-outline-variant/15" href="#">
+<p class="text-sm font-serif italic text-on-surface group-hover:text-primary">Strogatz, S. (2021)</p>
+<p class="text-[10px] text-outline uppercase tracking-wider mt-1">Nonlinear Oscillations in Biol...</p>
+</a>
+</li>
+<li class="group">
+<a class="block hover:bg-surface-container-low p-3 rounded-lg transition-colors border border-transparent hover:border-outline-variant/15" href="#">
+<p class="text-sm font-serif italic text-on-surface group-hover:text-primary">Friston, K. J. (2019)</p>
+<p class="text-[10px] text-outline uppercase tracking-wider mt-1">Free Energy Principle &amp; Brain...</p>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Footer Narrative -->
+<footer class="mt-24 pt-12 border-t border-outline-variant/10 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="col-span-2">
+<h2 class="text-3xl font-serif italic mb-4">Concluding Remarks</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed font-body">
+                        The journey toward understanding neural synchrony is just beginning. As we refine our mathematical models and resolution of observation, we move closer to a unified theory of biological intelligence. This document serves as a foundational artifact for the ongoing taxonomy of cortical resonance.
+                    </p>
+</div>
+<div class="flex flex-col justify-end items-end gap-4">
+<img alt="Author Signature" class="w-32 h-auto invert opacity-50" data-alt="a hand-written ink signature with elegant cursive loops on a clean dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb2y6oEbORKfUTd3bCfzYap9Y0tCQo9vJRJ-2wg4H9Ui5gW4eOnDiUu47G_l-t-jB4HBU4jiuA0sETS9YwJQOcj7KayW175gpSghx1LVs61k9m1IPL2tbWejqtFDEZ4q2T7tw7F8zpZAW2IsofFW9KjUfzzVoOH9DpRTMqFS4t7_kgiZWDJStY3PZTpnCevVIvT-6IVU8JrJsflrGvu0k6SjVvfUdXTmZHR4gsKYnz4-pWdxYLKZjdozFQolqsGIUvNSBrxtvES1M"/>
+<div class="text-right">
+<p class="text-sm font-serif italic">Verified Intelligence Stream</p>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">Node: OMEGA-7-ARCHIVE</p>
+</div>
+</div>
+</footer>
+</div>
+</main>
+<!-- Contextual Floating Action -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-gradient-to-br from-primary to-primary-container rounded-full shadow-2xl flex items-center justify-center text-on-primary group hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">add</span>
+<!-- Tooltip -->
+<div class="absolute right-full mr-4 bg-surface-container-highest px-3 py-1.5 rounded-lg ghost-border opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+<span class="font-sans text-[10px] uppercase tracking-widest text-on-surface">Annotate Fragment</span>
+</div>
+</button>
+</div>
+</body></html>
