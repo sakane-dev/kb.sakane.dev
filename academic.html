@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#5e5ce6",
+                        "on-tertiary": "#490080",
+                        "on-primary-container": "#f4f1ff",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "secondary": "#b9c8de",
+                        "error-container": "#93000a",
+                        "tertiary": "#ddb7ff",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0d0e10",
+                        "on-tertiary-fixed": "#2c0051",
+                        "background": "#121315",
+                        "surface-container-high": "#292a2c",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "secondary-fixed": "#d4e4fa",
+                        "surface-dim": "#121315",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#0c006b",
+                        "on-background": "#e3e2e5",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "surface-container-low": "#1b1c1e",
+                        "primary-fixed": "#e2dfff",
+                        "on-primary": "#1800a7",
+                        "on-secondary": "#233143",
+                        "on-secondary-container": "#a7b6cc",
+                        "surface-container-highest": "#343537",
+                        "surface-tint": "#c2c1ff",
+                        "outline-variant": "#464554",
+                        "surface-variant": "#343537",
+                        "on-surface": "#e3e2e5",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "inverse-surface": "#e3e2e5",
+                        "surface-bright": "#38393b",
+                        "primary": "#c2c1ff",
+                        "inverse-on-surface": "#303033",
+                        "secondary-container": "#39485a",
+                        "outline": "#918fa0",
+                        "tertiary-container": "#9541e4",
+                        "surface-container": "#1f2022",
+                        "tertiary-fixed": "#f0dbff",
+                        "on-tertiary-container": "#fbefff",
+                        "surface": "#121315",
+                        "on-primary-fixed-variant": "#332dbc",
+                        "inverse-primary": "#4d4ad5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Newsreader"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .reading-progress-bar {
+            width: 35%;
+        }
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Newsreader', serif;
+            font-size: 5rem;
+            line-height: 0.8;
+            padding-top: 0.5rem;
+            padding-right: 0.75rem;
+            color: #c2c1ff;
+            font-style: italic;
+            font-weight: 200;
+        }
+        ::selection {
+            background-color: #5e5ce6;
+            color: #f4f1ff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-label selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Shared Component Logic) -->
+<nav class="fixed top-0 w-full z-40 bg-[#121315]/70 backdrop-blur-xl flex justify-between items-center px-8 h-16 ml-0 md:ml-64 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-4">
+<span class="font-['Newsreader'] text-xl text-white">Knowledge Base</span>
+<div class="hidden md:flex gap-6 ml-8">
+<a class="text-[#c2c1ff] border-b-2 border-[#c2c1ff] pb-1 font-['Inter'] font-medium text-sm tracking-tight" href="#">Documents</a>
+<a class="text-neutral-400 hover:text-[#c2c1ff] transition-all font-['Inter'] font-medium text-sm tracking-tight" href="#">Authors</a>
+<a class="text-neutral-400 hover:text-[#c2c1ff] transition-all font-['Inter'] font-medium text-sm tracking-tight" href="#">Trends</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:block relative">
+<div class="bg-surface-container-high/60 backdrop-blur-md px-4 py-1.5 rounded-lg border border-outline-variant/15 flex items-center gap-2 focus-within:ring-1 focus-within:ring-[#c2c1ff]/30 transition-all">
+<span class="material-symbols-outlined text-sm text-outline">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 text-on-surface placeholder:text-neutral-500 w-48" placeholder="Search archive..." type="text"/>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer transition-colors">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Shared Component Logic) -->
+<aside class="fixed left-0 top-0 h-screen z-50 flex flex-col p-4 bg-neutral-900/95 dark:bg-[#1b1c1e] h-full w-64 border-r-0 hidden md:flex">
+<div class="mb-10 px-2">
+<h1 class="font-['Newsreader'] italic text-2xl text-[#c2c1ff]">The Archive</h1>
+<p class="text-neutral-500 text-[10px] uppercase tracking-[0.2em] mt-1">Executive Intelligence</p>
+</div>
+<button class="mb-8 mx-2 py-3 px-4 rounded-lg bg-gradient-to-br from-primary to-primary-container text-on-primary font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-lg">add</span>
+            New Collection
+        </button>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2.5 text-[#c2c1ff] font-semibold bg-[#292a2c] rounded-lg transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">book_4</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-neutral-400 hover:bg-[#292a2c] hover:text-white transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Research</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-neutral-400 hover:bg-[#292a2c] hover:text-white transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-neutral-400 hover:bg-[#292a2c] hover:text-white transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Archive</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-neutral-400 hover:bg-[#292a2c] hover:text-white transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] font-medium text-sm tracking-tight">Settings</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="text-xs">Help</span>
+</a>
+<div class="flex items-center gap-3 px-4 py-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a high-level executive with thoughtful expression in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA5fcMPDmVWShb-C269MMaCEvPXahUAp_FXj2yTuOlGWieoT0tixnG5ulVaas3M_rFWiZhmdiwap0c_7UokbntBjePvLxiC572oMIdt_wKHmwGlhO-JMIPfa-ZJPm7UlGyuqzLxe5v-udwv5ZgvXepHcjElx5JMOqWoSxKWkFkIDEoKu8bzuazW_O5FNBpZS1YLze18SycklVpocYFKje398M_FV4EY6HhnbieKRFHelpcfJfh8OaLYfz99DoK3IJXbetaMW4j-RU"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-semibold text-on-surface">User profile</p>
+<p class="text-[10px] text-neutral-500">Premium Member</p>
+</div>
+<span class="material-symbols-outlined text-neutral-500 hover:text-error cursor-pointer transition-colors text-sm">logout</span>
+</div>
+</div>
+</aside>
+<!-- Reading Progress Indicator -->
+<div class="fixed top-16 left-0 md:left-64 right-0 h-0.5 bg-surface-container-low z-40">
+<div class="reading-progress-bar h-full bg-primary shadow-[0_0_8px_rgba(194,193,255,0.6)]"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="ml-0 md:ml-64 pt-24 pb-32 px-6 lg:px-12 flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
+<!-- Document Content -->
+<article class="flex-1 max-w-3xl">
+<!-- Header Metadata -->
+<div class="mb-12 space-y-4">
+<div class="flex gap-2">
+<span class="px-3 py-0.5 bg-primary/10 text-primary text-[10px] uppercase font-bold tracking-widest rounded-full border border-primary/20">Executive Review</span>
+<span class="px-3 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] uppercase font-bold tracking-widest rounded-full">Structural Intelligence</span>
+</div>
+<h1 class="font-['Newsreader'] text-5xl md:text-6xl font-light leading-tight text-white italic">
+                    構造知性：<span class="not-italic font-medium">複雑な情報の建築学</span>
+</h1>
+<p class="font-['Newsreader'] text-xl text-neutral-400 italic">Structural Intelligence: The Architecture of Complex Information</p>
+</div>
+<!-- Content Body (The "CSS Override" showcase) -->
+<div class="space-y-8 font-['Newsreader'] text-lg leading-relaxed text-on-surface/90">
+<p class="drop-cap">
+                    現代の情報社会において、単なるデータの蓄積は価値を失いつつあります。真の知性とは、断片化された知識をいかに体系化し、動的な構造として再構築できるかという「構造知性（Structural Intelligence）」に集約されます。エグゼクティブに求められるのは、細部への埋没ではなく、全体を鳥瞰し、情報の背後にある文脈を設計する能力です。
+                </p>
+<!-- Notion-style Heading 2 -->
+<h2 class="font-['Newsreader'] text-3xl text-white pt-8 pb-2 border-b border-outline-variant/10">知の幾何学：情報の階層化</h2>
+<p>
+                    情報は静的なものではありません。それは重力のように互いに引き合い、クラスタを形成します。このクラスタリングを意図的に制御することが、戦略的思考の第一歩となります。
+                </p>
+<!-- Glassmorphic Quote block -->
+<div class="relative py-12 px-10 my-12 overflow-hidden rounded-2xl bg-surface-container-low/40 backdrop-blur-md border border-outline-variant/15">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
+<span class="material-symbols-outlined absolute -top-4 -left-4 text-9xl text-white/5 font-thin select-none">format_quote</span>
+<blockquote class="relative z-10 text-2xl font-light italic text-[#c2c1ff] leading-snug">
+                        「優れた構造は、説明を必要としない。それは見る者に、次に何をすべきかを直感的に指し示す。」
+                    </blockquote>
+<cite class="block mt-6 text-sm font-['Inter'] font-semibold uppercase tracking-widest text-neutral-500">— アーキテクチャ・オブ・ソート 第IV章</cite>
+</div>
+<p>
+                    以下のコードスニペットは、情報をプログラマティックに構造化する際の抽象モデルを示しています。
+                </p>
+<!-- Sophisticated Dark Code Block -->
+<div class="my-8 rounded-xl bg-[#0d0e10] border border-outline-variant/20 overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between px-4 py-2 bg-surface-container-low/50 border-b border-outline-variant/10">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/40"></div>
+</div>
+<span class="text-[10px] font-['Inter'] text-neutral-500 uppercase tracking-widest font-bold">typescript / conceptual</span>
+</div>
+<div class="p-6 font-mono text-sm leading-relaxed overflow-x-auto text-on-surface-variant">
+<pre><code><span class="text-tertiary">interface</span> <span class="text-primary">IntelligenceNode</span> {
+  id: <span class="text-secondary">string</span>;
+  content: <span class="text-secondary">KnowledgeFragment</span>;
+  connections: <span class="text-primary">Edge</span>[];
+  <span class="text-neutral-500">// 構造的重みを計算する</span>
+  weight: <span class="text-secondary">number</span>;
+}
+
+<span class="text-tertiary">const</span> <span class="text-white">synthesize</span> = (nodes: <span class="text-primary">IntelligenceNode</span>[]) =&gt; {
+  <span class="text-neutral-500">// 文脈の幾何学的統合</span>
+  <span class="text-tertiary">return</span> nodes.<span class="text-white">reduce</span>((acc, curr) =&gt; {
+    <span class="text-tertiary">return</span> <span class="text-white">alignHierarchy</span>(acc, curr);
+  }, <span class="text-white">new</span> <span class="text-primary">KnowledgeBase</span>());
+};</code></pre>
+</div>
+</div>
+<p>
+                    最後に、このモデルがどのように実務へと還元されるかを検討します。構造知性の本質は、単なる整理整頓ではなく、予測可能性の向上にあります。
+                </p>
+</div>
+</article>
+<!-- Document Stats Sidebar (Asymmetric Layout) -->
+<aside class="w-full lg:w-72 space-y-6">
+<div class="sticky top-24 space-y-6">
+<!-- Stat Card: Meta -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<h3 class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest text-neutral-500 mb-4">Document Meta</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/5 pb-2">
+<span class="text-[11px] text-neutral-400">AUTHOR</span>
+<span class="text-sm font-semibold text-primary">Dr. Sakane</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/5 pb-2">
+<span class="text-[11px] text-neutral-400">PUBLISHED</span>
+<span class="text-sm text-on-surface">2024.05.21</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/5 pb-2">
+<span class="text-[11px] text-neutral-400">READ TIME</span>
+<span class="text-sm text-on-surface">12 MIN</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-[11px] text-neutral-400">CONFIDENTIALITY</span>
+<span class="text-sm text-error font-medium">LEVEL 4</span>
+</div>
+</div>
+</div>
+<!-- Stat Card: Analytics (Bento style) -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-high/40 p-4 rounded-xl flex flex-col gap-1">
+<span class="material-symbols-outlined text-primary text-sm">visibility</span>
+<span class="text-xl font-['Inter'] font-light text-white">2.4k</span>
+<span class="text-[9px] text-neutral-500 uppercase tracking-tighter">Views</span>
+</div>
+<div class="bg-surface-container-high/40 p-4 rounded-xl flex flex-col gap-1">
+<span class="material-symbols-outlined text-tertiary text-sm">share</span>
+<span class="text-xl font-['Inter'] font-light text-white">182</span>
+<span class="text-[9px] text-neutral-500 uppercase tracking-tighter">Citations</span>
+</div>
+</div>
+<!-- Outline Nav -->
+<div class="bg-surface-container-lowest/50 p-6 rounded-xl border border-outline-variant/5">
+<h3 class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest text-neutral-500 mb-4">Table of Contents</h3>
+<ul class="space-y-3">
+<li>
+<a class="text-xs text-primary font-medium flex items-center gap-2" href="#">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+                                01 構造知性の定義
+                            </a>
+</li>
+<li>
+<a class="text-xs text-neutral-500 hover:text-on-surface transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 rounded-full bg-neutral-800"></span>
+                                02 知の幾何学：階層化
+                            </a>
+</li>
+<li>
+<a class="text-xs text-neutral-500 hover:text-on-surface transition-colors flex items-center gap-2 pl-3" href="#">
+<span class="w-0.5 h-0.5 rounded-full bg-neutral-800"></span>
+                                2.1 クラスタリングの制御
+                            </a>
+</li>
+<li>
+<a class="text-xs text-neutral-500 hover:text-on-surface transition-colors flex items-center gap-2" href="#">
+<span class="w-1 h-1 rounded-full bg-neutral-800"></span>
+                                03 実務への還元
+                            </a>
+</li>
+</ul>
+</div>
+<!-- CTA Action -->
+<div class="pt-4">
+<button class="w-full py-4 rounded-lg bg-surface-container-highest text-on-surface font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-bright transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" data-weight="fill">picture_as_pdf</span>
+                        Download Intelligence Report
+                    </button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Space -->
+<footer class="ml-0 md:ml-64 py-12 px-12 border-t border-outline-variant/5 text-neutral-600">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] uppercase tracking-[0.3em] font-['Inter']">© 2024 The Archive Knowledge Base. All Rights Reserved.</p>
+<div class="flex gap-8 text-[10px] uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Access</a>
+<a class="hover:text-primary transition-colors" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</body></html>
