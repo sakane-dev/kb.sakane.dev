@@ -308,7 +308,6 @@ function extractPapersFromRecordMap(
 // Icons (SVG inline)
 // ---------------------------------------------------------------------------
 
-
 function IconFlask() {
   return (
     <svg
@@ -569,7 +568,9 @@ function DynamicTexture({
             type='fractalNoise'
             baseFrequency={freq}
             numOctaves={3}
-            seed={Math.abs((seed.codePointAt(0) ?? 0) * 127 + (seed.codePointAt(1) ?? 0) * 31)}
+            seed={Math.abs(
+              (seed.codePointAt(0) ?? 0) * 127 + (seed.codePointAt(1) ?? 0) * 31
+            )}
             stitchTiles='stitch'
           />
         </filter>
@@ -692,10 +693,20 @@ function BentoLargeCard({ paper }: { paper: PaperCard }) {
 
   return (
     <Link href={paper.url} className='kb-bento-large'>
-      <DynamicTexture seed={paper.id} color='rgba(194, 193, 255, 0.35)' opacity={0.1} />
+      <DynamicTexture
+        seed={paper.id}
+        color='rgba(194, 193, 255, 0.35)'
+        opacity={0.1}
+      />
       <div className='kb-bento-large__overlay' aria-hidden='true' />
-      <div className='kb-bento-large__glow kb-bento-large__glow--a' aria-hidden='true' />
-      <div className='kb-bento-large__glow kb-bento-large__glow--b' aria-hidden='true' />
+      <div
+        className='kb-bento-large__glow kb-bento-large__glow--a'
+        aria-hidden='true'
+      />
+      <div
+        className='kb-bento-large__glow kb-bento-large__glow--b'
+        aria-hidden='true'
+      />
       <div className='kb-bento-large__content'>
         <div className='kb-bento-large__glass'>
           <span className='kb-bento-large__eyebrow'>{category}</span>
@@ -711,7 +722,6 @@ function BentoLargeCard({ paper }: { paper: PaperCard }) {
   )
 }
 
-
 function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
   const dateText = React.useMemo(() => formatSafeDate(paper.date), [paper.date])
   const category = paper.tags[0] ?? 'Research'
@@ -721,7 +731,10 @@ function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
     : 'rgba(185, 200, 222, 0.35)'
 
   return (
-    <Link href={paper.url} className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}>
+    <Link
+      href={paper.url}
+      className={`kb-bento-small ${alt ? 'kb-bento-small--alt' : ''}`}
+    >
       <DynamicTexture seed={paper.id} color={textureColor} opacity={0.06} />
       <div className='kb-bento-small__body'>
         <div className='kb-bento-small__icon-box'>
@@ -731,7 +744,9 @@ function BentoSmallCard({ paper, alt }: { paper: PaperCard; alt?: boolean }) {
         </div>
         <div className='kb-bento-small__glass'>
           <h4 className='kb-bento-small__title'>{paper.title}</h4>
-          <p className='kb-bento-small__meta'>{dateText} · {category}</p>
+          <p className='kb-bento-small__meta'>
+            {dateText} · {category}
+          </p>
         </div>
       </div>
     </Link>
