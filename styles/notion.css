@@ -29,6 +29,9 @@
 
 .notion-text {
   padding: 0.5em 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .notion-asset-caption {
@@ -296,6 +299,7 @@
   padding: 1.5rem;
   font-size: 0.875rem;
   line-height: 1.625;
+  min-width: 0;
   max-width: 100%;
   overflow-x: auto;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -305,6 +309,10 @@
   background: transparent;
   margin: 0;
   padding: 0;
+  min-width: 0;
+  max-width: 100%;
+  white-space: pre;
+  overflow-x: auto;
 }
 
 .notion-link {
@@ -524,4 +532,12 @@
 .notion-page-content-has-aside {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* flex/grid 内での min-width: auto による押し広げを防止 */
+.notion-page,
+.notion-page-content,
+.notion-page-content-inner {
+  min-width: 0;
+  max-width: 100%;
 }
