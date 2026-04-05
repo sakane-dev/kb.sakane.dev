@@ -10,9 +10,9 @@ export function AppLayout({
 }) {
   if (disabled) return <>{children}</>
   return (
-    <div className='bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex dark'>
+    <div className='bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex dark overflow-x-hidden'>
       {/* サイドバー：デスクトップ時のみ表示 */}
-      <aside className='hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-[#1b1c1e] z-50 border-r border-[#343537]/15'>
+      <aside className='hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 bg-[#1b1c1e] z-50 border-r border-[#343537]/15'>
         <div className='p-8'>
           <div className='text-xl font-bold tracking-tight text-[#c2c1ff] font-body mb-1'>
             The Archive
@@ -49,9 +49,9 @@ export function AppLayout({
       </aside>
 
       {/* メインコンテンツ領域 */}
-      <main className='flex-1 md:ml-64 min-h-screen relative flex flex-col'>
+      <main className='flex-1 lg:ml-64 min-h-screen relative flex flex-col'>
         {/* トップナビゲーション */}
-        <header className='flex justify-between items-center px-8 h-16 fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 bg-[#121315]/80 backdrop-blur-xl border-b border-[#343537]/15'>
+        <header className='flex justify-between items-center px-8 h-16 fixed top-0 left-0 lg:left-64 right-0 z-40 bg-[#121315]/80 backdrop-blur-xl border-b border-[#343537]/15'>
           <div className='flex items-center gap-8'>
             <div className='flex items-center gap-4 text-outline font-label text-[11px] uppercase tracking-[0.2em]'>
               <span>kb.sakane.dev</span>
@@ -64,7 +64,7 @@ export function AppLayout({
       </main>
 
       {/* モバイル用フローティングボタンのプレースホルダー */}
-      <div className='md:hidden fixed bottom-6 right-6 z-50'>
+      <div className='lg:hidden fixed bottom-6 right-6 z-50'>
         <button className='w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center'>
           <span className='material-symbols-outlined'>menu</span>
         </button>
