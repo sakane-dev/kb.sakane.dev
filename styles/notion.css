@@ -56,8 +56,28 @@
   overflow-x: auto;
 }
 
+/* ブレッドクラム（LHS）を flex: 1 で伸ばし、検索ボタン（RHS）と重ならないように */
+.notion-header .notion-nav-header > .breadcrumbs {
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.notion-header .breadcrumb {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* 長い日本語タイトルは省略表示 */
+.notion-header .breadcrumb .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .notion-nav-header-rhs {
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .notion-gallery-grid {
