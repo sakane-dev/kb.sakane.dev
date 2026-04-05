@@ -313,14 +313,14 @@
   }
 }
 
-.notion-code pre {
-  background: transparent;
-  margin: 0;
-  padding: 0;
+/* DOM構造: <pre class="notion-code"><code class="language-xxx"> */
+/* .notion-code pre は空振り。正しくは .notion-code code */
+.notion-code code {
+  display: block;
   min-width: 0 !important;
   max-width: 100% !important;
   white-space: pre !important;
-  overflow-x: auto !important;
+  overflow-x: visible;
 }
 
 .notion-link {
